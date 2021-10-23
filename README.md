@@ -20,6 +20,16 @@ Publish config file (with --force option to update)
 php artisan vendor:publish --provider="Itemvirtual\CookiesPopup\CookiesPopupServiceProvider" --tag=config
 ```
 
+You need to add package cookies to the `EncryptCookies` except array
+```php
+# file app/Http/Middleware/EncryptCookies.php
+protected $except = [
+    'analytical_cookies',
+    'advertising_cookies',
+    'recaptcha_cookies',
+];
+```
+
 ### Generate translations
 
 There is a command to create the required translations in `labels` section
@@ -81,7 +91,7 @@ To add the scripts in your layout (`gtag.js` or `analytics.js`), use the method 
 {!! \Itemvirtual\CookiesPopup\CookiesPopup::getGtagJs() !!}
 ```
 ```
-{!! \Itemvirtual\CookiesPopup\CookiesPopup::analytics.js() !!}
+{!! \Itemvirtual\CookiesPopup\CookiesPopup::getAnalyticsJs() !!}
 ```
 
 You need to add an env variable `GA_MEASUREMENT_ID` it can be a comma separated array
@@ -97,6 +107,7 @@ GA_MEASUREMENT_ID="UA-XXXXX-Y, AW-XXXXXXX"
 
 To styling your pop-up window, you have two options.  
 The `styles` or `custom-classes` config parameters.  
+
 With `styles` you can change some CSS styles. If you need a deeper design change,
 use `custom-classes`, which will concatenate your class to the generic one
 
