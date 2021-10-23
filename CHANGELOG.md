@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.0.2 - 2021-10-23
+
+- rename config.php file to cookies-popup.php
+
 ## 1.0.1 - 2021-10-23
 
 - clean and document EncryptCookies except array

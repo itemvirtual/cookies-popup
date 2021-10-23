@@ -20,7 +20,7 @@ class CookiesPopupServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('cookies-popup.php'),
+                __DIR__ . '/../config/cookies-popup.php' => config_path('cookies-popup.php'),
             ], 'config');
 
             // Registering package commands.
@@ -36,7 +36,7 @@ class CookiesPopupServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cookies-popup');
+        $this->mergeConfigFrom(__DIR__ . '/../config/cookies-popup.php', 'cookies-popup');
 
     }
 }
