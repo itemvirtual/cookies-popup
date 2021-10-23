@@ -139,7 +139,6 @@ return [
     |
     */
 
-    'ga-measurement-id' => env('GA_MEASUREMENT_ID', null),
     'use-async-analytics-js' => true,
 
     /*
