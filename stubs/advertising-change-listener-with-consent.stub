@@ -1,0 +1,9 @@
+$(document).on('change', '#advertising-cookies', function (e) {
+    var isChecked = this.checked;
+    var consentStatus = isChecked ? 'granted' : 'denied';
+
+    sendCookiesValue(isChecked, 'advertising');
+    gtag('consent', 'update', {
+        'ad_storage': consentStatus
+    });
+});

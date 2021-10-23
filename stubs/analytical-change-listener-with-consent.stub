@@ -1,0 +1,9 @@
+$(document).on('change', '#analytical-cookies', function (e) {
+    var isChecked = this.checked;
+    var consentStatus = isChecked ? 'granted' : 'denied';
+
+    sendCookiesValue(isChecked, 'analytical');
+    gtag('consent', 'update', {
+        'analytics_storage': consentStatus
+    });
+});

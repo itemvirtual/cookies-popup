@@ -1,0 +1,157 @@
+#cookies-popup-overlay {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    overflow: hidden;
+    z-index: 50;
+    background: {{ overlayBackgroundColor }};
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay .popup {
+    box-shadow: {{ popupBoxShadow }};
+    background: {{ popupBackgroundColor }};
+    padding: 40px;
+    color: {{ popupTextColor }};
+    font-size: {{ popupFontSize }};
+    line-height: {{ popupLineHeight }};
+    max-height: 100vh;
+    overflow: auto;
+    max-width: {{ popupMaxWidth }};
+}
+
+/* media-breakpoint-down(md) */
+@media (max-width: 991.98px) {
+    .overlay .popup {
+        max-width: 75%;
+    }
+}
+
+/* media-breakpoint-down(sm) */
+@media (max-width: 767.98px) {
+    .overlay .popup {
+        max-width: 98%;
+    }
+}
+
+.overlay .popup .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.overlay .popup .popup-header .popup-title {
+    color: {{ popupTitleTextColor }};
+    font-size: {{ popupTitleFontSize }};
+    line-height: {{ popupTitleLineHeight }};
+    font-weight: {{ popupTitleFontWeight }};
+}
+
+.overlay .popup-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay .popup-buttons a {
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid {{ buttonBorderColor }};
+    background: {{ buttonBackgroundColor }};
+    font-size: {{ buttonFontSize }};
+    color: {{ buttonTextColor }};
+    margin: {{ buttonMargin }};
+    border-radius: {{ buttonBorderRadius }};
+    padding: {{ buttonPadding }};
+}
+
+.overlay .popup-buttons a:hover {
+    background: {{ buttonTextColor }};
+    color: {{ buttonBackgroundColor }};
+}
+
+#cookies-popup-configuration {
+    display: none;
+    padding-top: 15px;
+}
+
+#cookies-popup-configuration .accept-cookies-checkbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+}
+
+#cookies-popup-configuration .accept-cookies-label {
+    font-weight: {{ configurationLabelFontWeight }};
+}
+
+#cookies-popup-configuration .accept-cookies-info {
+    max-width: 92%;
+}
+
+#cookies-popup-configuration #cookies-popup-close {
+    margin: {{ popupCloseButtonMargin }};
+}
+
+.toggle-control {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.toggle-control input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.toggle-control input:checked ~ .control {
+    background-color: {{ configurationToggleActiveColor }};
+}
+
+.toggle-control input:checked ~ .control:after {
+    left: 19px;
+}
+
+.toggle-control .control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 35px;
+    border-radius: 9px;
+    background-color: {{ configurationToggleInactiveColor }};
+    transition: background-color .15s ease-in;
+}
+
+.toggle-control .control:after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 9px;
+    background: {{ configurationToggleControlColor }};
+    transition: left .15s ease-in;
+}

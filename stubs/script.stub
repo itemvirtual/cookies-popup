@@ -1,0 +1,76 @@
+window.onload = function() {
+
+    var cookiesToggleTimeout = 300;
+    var cookiesPopupDismissible = {{ cookiesPopupDismissible }};
+
+    (function checkCookiesPopup() {
+        try {
+            var acceptedCookiesPopup = localStorage.getItem('{{ localStorageKeyName }}');
+            if (!acceptedCookiesPopup) {
+                showCookiesPopup();
+            }
+        } catch (e) {
+            showCookiesPopup();
+        }
+    })();
+
+    $(document).on('click', '#cookies-popup-configure', function (e) {
+        $('#cookies-popup-configuration').slideToggle(cookiesToggleTimeout);
+    });
+
+    $(document).on('click', '#cookies-popup-accept', function (e) {
+        sendCookiesValue('true', 'all');
+        hideCookiesPopup();
+    });
+
+    $(document).on('click', '#cookies-popup-close', function (e) {
+        hideCookiesPopup();
+    });
+
+    $(document).on('click', '#cookies-popup-show', function (e) {
+        e.preventDefault();
+        showCookiesPopup();
+    });
+
+    {{ analyticalChangeListener }}
+
+    {{ advertisingChangeListener }}
+
+    $(document).on('change', '#recaptcha-cookies', function (e) {
+        var isChecked = this.checked;
+        sendCookiesValue(isChecked, 'recaptcha');
+    });
+
+    function hideCookiesPopup() {
+        localStorage.setItem('{{ localStorageKeyName }}', true);
+        $('#cookies-popup-overlay').fadeOut(cookiesToggleTimeout);
+    }
+
+    function showCookiesPopup() {
+        var showCookiesTimeout = setTimeout(function () {
+            $('#cookies-popup-overlay').fadeIn(cookiesToggleTimeout).css('display', 'flex');
+        }, 500);
+    }
+
+    $(document).on('click', '#cookies-popup-overlay', function (e) {
+        if (e.target === this) {
+            if (cookiesPopupDismissible) {
+                $('#cookies-popup-overlay').fadeOut(cookiesToggleTimeout);
+            }
+        }
+    });
+
+    $(document).on('change', '#accept-cookies', function (e) {
+        var isChecked = this.checked;
+        sendCookiesValue(isChecked);
+    });
+
+    function sendCookiesValue(isChecked, type) {
+        $.post('{{ cookiesConfigureUrl }}', {'type' : type, 'value': isChecked}, function (response) {
+            if (response.error) {
+                console.log(response.error);
+            }
+        });
+    }
+    
+};
