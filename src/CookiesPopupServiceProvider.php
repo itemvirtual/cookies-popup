@@ -18,11 +18,11 @@ class CookiesPopupServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cookies-popup');
         $this->loadRoutesFrom(__DIR__ . '/../routes/cookies_popup.php');
 
-        $this->publishes([
-            __DIR__ . '/../config/cookies-popup.php' => config_path('cookies-popup.php'),
-        ], 'config');
-
         if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/cookies-popup.php' => config_path('cookies-popup.php'),
+            ], 'config');
+
             // Registering package commands.
             $this->commands([
                 GenerateCookiesPopupLabelsCommand::class
@@ -37,6 +37,5 @@ class CookiesPopupServiceProvider extends ServiceProvider
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__ . '/../config/cookies-popup.php', 'cookies-popup');
-
     }
 }
