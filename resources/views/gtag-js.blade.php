@@ -6,7 +6,7 @@
         function gtag(){window.dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        @if(config('cookies-popup.google-consent-mode'))
+        @if(config('cookies-popup.google_consent_mode'))
             gtag('consent', 'default', {
                 'ad_storage': '{{ Cookie::get('advertising_cookies') == 'true' ? 'granted' : 'denied' }}',
                 'analytics_storage': '{{ Cookie::get('analytical_cookies') == 'true' ? 'granted' : 'denied' }}'

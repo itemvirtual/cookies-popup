@@ -106,10 +106,10 @@ GA_MEASUREMENT_ID="UA-XXXXX-Y, AW-XXXXXXX"
 ### Styling
 
 To styling your pop-up window, you have two options.  
-The `styles` or `custom-classes` config parameters.  
+The `custom_styles` or `custom_classes` config parameters.  
 
-With `styles` you can change some CSS styles. If you need a deeper design change,
-use `custom-classes`, which will concatenate your class to the generic one
+With `custom_styles` you can change some CSS styles. If you need a deeper design change,
+use `custom_classes`, which will concatenate your class to the generic one
 
 ### Changelog
 

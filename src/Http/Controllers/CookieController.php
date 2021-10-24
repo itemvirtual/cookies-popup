@@ -42,6 +42,8 @@ class CookieController extends BaseController
 
     private function deleteCookies($arCookies)
     {
+        $cookiesDomain = config('cookies-popup.cookies_domain') ? : '.' . request()->getHost();
+
         foreach ($arCookies as $cookie) {
             if (is_array($cookie)) {
                 $cookieName = key($cookie);
@@ -53,7 +55,7 @@ class CookieController extends BaseController
             } else {
                 setcookie($cookie, '', time() - 1000);
                 setcookie($cookie, '', time() - 1000, '/');
-                setcookie($cookie, '', time() - 1000, '/', config('cookies-popup.cookies-domain'));
+                setcookie($cookie, '', time() - 1000, '/', $cookiesDomain);
             }
         }
     }
@@ -63,7 +65,7 @@ class CookieController extends BaseController
 
         if ($value == 'false') {
             // Delete Google analytics
-            $arCookies = config('cookies-popup.analytical-cookies');
+            $arCookies = config('cookies-popup.analytical_cookies');
             $this->deleteCookies($arCookies);
         }
 
@@ -79,7 +81,7 @@ class CookieController extends BaseController
 
         if ($value == 'false') {
             // Delete Advertising
-            $arCookies = config('cookies-popup.advertising-cookies');
+            $arCookies = config('cookies-popup.advertising_cookies');
             $this->deleteCookies($arCookies);
         }
 
@@ -95,7 +97,7 @@ class CookieController extends BaseController
 
         if ($value == 'false') {
             // Delete Recaptcha
-            $arCookies = config('cookies-popup.recaptcha-cookies');
+            $arCookies = config('cookies-popup.recaptcha_cookies');
             $this->deleteCookies($arCookies);
         }
 

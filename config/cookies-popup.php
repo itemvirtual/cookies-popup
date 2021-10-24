@@ -9,7 +9,7 @@ return [
     |
     */
 
-    'localStorage-key-name' => 'accepted-cookies-popup',
+    'local_storage_key_name' => 'accepted-cookies-popup',
 
     /*
     |--------------------------------------------------------------------------
@@ -18,9 +18,9 @@ return [
     |
     */
 
-    'analytical' => true,
-    'advertising' => false,
-    'recaptcha' => false,
+    'configure_analytical' => true,
+    'configure_advertising' => false,
+    'configure_recaptcha' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'translations-file' => 'labels',
+    'translations_file' => 'labels',
 
     /*
     |--------------------------------------------------------------------------
@@ -38,34 +38,34 @@ return [
     |
     */
 
-    'styles' => [
-        'overlay-background-color' => 'rgba(26, 26, 26, .82)',
-        'popup-box-shadow' => '0 0 18px rgba(0, 0, 0, .2)',
-        'popup-background-color' => '#FFF',
-        'popup-text-color' => '#000',
-        'popup-font-size' => '.95em',
-        'popup-line-height' => '1.5',
-        'popup-max-width' => '800px',
+    'custom_styles' => [
+        'overlay_background_color' => 'rgba(26, 26, 26, .82)',
+        'popup_box_shadow' => '0 0 18px rgba(0, 0, 0, .2)',
+        'popup_background_color' => '#FFF',
+        'popup_text_color' => '#000',
+        'popup_font_size' => '.95em',
+        'popup_line_height' => '1.5',
+        'popup_max_width' => '800px',
 
-        'popup-title-text-color' => '#000',
-        'popup-title-font-size' => '1.3em',
-        'popup-title-line-height' => '1.4',
-        'popup-title-font-weight' => '600',
+        'popup_title_text_color' => '#000',
+        'popup_title_font_size' => '1.3em',
+        'popup_title_line_height' => '1.4',
+        'popup_title_font_weight' => '600',
 
-        'button-border-radius' => '0',
-        'button-margin' => '15px 10px',
-        'button-padding' => '5px 7px',
-        'button-background-color' => '#FFF',
-        'button-border-color' => '#000',
-        'button-text-color' => '#000',
-        'button-font-size' => '0.9em',
+        'button_border_radius' => '0',
+        'button_margin' => '15px 10px',
+        'button_padding' => '5px 7px',
+        'button_background_color' => '#FFF',
+        'button_border_color' => '#000',
+        'button_text_color' => '#000',
+        'button_font_size' => '0.9em',
 
-        'popup-close-button-margin' => '30px 10px 15px',
+        'popup_close_button_margin' => '30px 10px 15px',
 
-        'configuration-label-font-weight' => '700',
-        'configuration-toggle-control-color' => '#FFF',
-        'configuration-toggle-inactive-color' => '#CCC',
-        'configuration-toggle-active-color' => '#28A745',
+        'configuration_label_font_weight' => '700',
+        'configuration_toggle_control_color' => '#FFF',
+        'configuration_toggle_inactive_color' => '#CCC',
+        'configuration_toggle_active_color' => '#28A745',
     ],
 
     /*
@@ -82,16 +82,16 @@ return [
     |
     */
 
-    'custom-classes' => [
+    'custom_classes' => [
         'overlay' => '',
         'popup' => '',
-        'popup-header' => '',
-        'popup-title' => '',
-        'popup-text' => '',
-        'popup-buttons' => '',
-        'cookies-popup-configuration' => '',
-        'accept-cookies-label' => '',
-        'accept-cookies-info' => '',
+        'popup_header' => '',
+        'popup_title' => '',
+        'popup_text' => '',
+        'popup_buttons' => '',
+        'cookies_popup_configuration' => '',
+        'accept_cookies_label' => '',
+        'accept_cookies_info' => '',
     ],
 
     /*
@@ -103,7 +103,7 @@ return [
     |
     */
 
-    'cookies-popup-dismissible' => true,
+    'cookies_popup_dismissible' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -112,14 +112,14 @@ return [
     |
     */
 
-    'cookies-domain' => '.' . request()->getHost(),
+    'cookies_domain' => '',
 
-    'analytical-cookies' => ['_ga', '_gat', '_gid'],
-    'advertising-cookies' => [
+    'analytical_cookies' => ['_ga', '_gat', '_gid'],
+    'advertising_cookies' => [
         '_fbp',
         ['IDE' => '.doubleclick.net']
     ],
-    'recaptcha-cookies' => [],
+    'recaptcha_cookies' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -130,7 +130,7 @@ return [
     |
     */
 
-    'excluded-routes' => ['legal'],
+    'excluded_routes' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -138,8 +138,8 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-
-    'use-async-analytics-js' => true,
+    'ga_measurement_id' => env('GA_MEASUREMENT_ID', null),
+    'use_async_analytics_js' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -152,6 +152,6 @@ return [
     |
     */
 
-    'google-consent-mode' => false,
+    'google_consent_mode' => false,
 
 ];

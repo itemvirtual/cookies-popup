@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.0.6 - 2021-10-24
+
+- config rename
+
 ## 1.0.5 - 2021-10-23
 
 - remove ga-measurement-id config

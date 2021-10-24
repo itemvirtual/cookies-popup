@@ -46,54 +46,57 @@ class CookiesPopup
     public static function addCookiesPopup()
     {
         // Excluded routes
-        if (is_array(config('cookies-popup.excluded-routes')) && request()->route()) {
-            foreach (config('cookies-popup.excluded-routes') as $excluded) {
+        if (is_array(config('cookies-popup.excluded_routes')) && request()->route()) {
+            foreach (config('cookies-popup.excluded_routes') as $excluded) {
                 if (Str::is($excluded, request()->route()->getName())) {
                     return '';
                 }
             }
         }
 
+        $translationsFile = config('cookies-popup.translations_file');
+
         $styles = self::getStubContents(__DIR__ . '/../stubs/styles.stub', self::getStylesReplacements());
         $scripts = self::getStubContents(__DIR__ . '/../stubs/script.stub', self::getScriptReplacements());
-        return view('cookies-popup::cookies-popup', ['styles' => $styles, 'scripts' => $scripts])->render();
+
+        return view('cookiesPopup::cookies-popup', ['styles' => $styles, 'scripts' => $scripts, 'translationsFile' => $translationsFile])->render();
     }
 
     private static function getStylesReplacements()
     {
         return [
-            'overlayBackgroundColor' => config('cookies-popup.styles.overlay-background-color'),
-            'popupBoxShadow' => config('cookies-popup.styles.popup-box-shadow'),
-            'popupBackgroundColor' => config('cookies-popup.styles.popup-background-color'),
-            'popupTextColor' => config('cookies-popup.styles.popup-text-color'),
-            'popupFontSize' => config('cookies-popup.styles.popup-font-size'),
-            'popupLineHeight' => config('cookies-popup.styles.popup-line-height'),
-            'popupMaxWidth' => config('cookies-popup.styles.popup-max-width'),
+            'overlayBackgroundColor' => config('cookies-popup.custom_styles.overlay_background_color'),
+            'popupBoxShadow' => config('cookies-popup.custom_styles.popup_box_shadow'),
+            'popupBackgroundColor' => config('cookies-popup.custom_styles.popup_background_color'),
+            'popupTextColor' => config('cookies-popup.custom_styles.popup_text_color'),
+            'popupFontSize' => config('cookies-popup.custom_styles.popup_font_size'),
+            'popupLineHeight' => config('cookies-popup.custom_styles.popup_line_height'),
+            'popupMaxWidth' => config('cookies-popup.custom_styles.popup_max_width'),
 
-            'popupTitleTextColor' => config('cookies-popup.styles.popup-title-text-color'),
-            'popupTitleFontSize' => config('cookies-popup.styles.popup-title-font-size'),
-            'popupTitleLineHeight' => config('cookies-popup.styles.popup-title-line-height'),
-            'popupTitleFontWeight' => config('cookies-popup.styles.popup-title-font-weight'),
+            'popupTitleTextColor' => config('cookies-popup.custom_styles.popup_title_text_color'),
+            'popupTitleFontSize' => config('cookies-popup.custom_styles.popup_title_font_size'),
+            'popupTitleLineHeight' => config('cookies-popup.custom_styles.popup_title_line_height'),
+            'popupTitleFontWeight' => config('cookies-popup.custom_styles.popup_title_font_weight'),
 
-            'buttonBorderRadius' => config('cookies-popup.styles.button-border-radius'),
-            'buttonMargin' => config('cookies-popup.styles.button-margin'),
-            'buttonPadding' => config('cookies-popup.styles.button-padding'),
-            'buttonBackgroundColor' => config('cookies-popup.styles.button-background-color'),
-            'buttonBorderColor' => config('cookies-popup.styles.button-border-color'),
-            'buttonTextColor' => config('cookies-popup.styles.button-text-color'),
-            'buttonFontSize' => config('cookies-popup.styles.button-font-size'),
+            'buttonBorderRadius' => config('cookies-popup.custom_styles.button_border_radius'),
+            'buttonMargin' => config('cookies-popup.custom_styles.button_margin'),
+            'buttonPadding' => config('cookies-popup.custom_styles.button_padding'),
+            'buttonBackgroundColor' => config('cookies-popup.custom_styles.button_background_color'),
+            'buttonBorderColor' => config('cookies-popup.custom_styles.button_border_color'),
+            'buttonTextColor' => config('cookies-popup.custom_styles.button_text_color'),
+            'buttonFontSize' => config('cookies-popup.custom_styles.button_font_size'),
 
-            'configurationLabelFontWeight' => config('cookies-popup.styles.configuration-label-font-weight'),
-            'configurationToggleControlColor' => config('cookies-popup.styles.configuration-toggle-control-color'),
-            'configurationToggleInactiveColor' => config('cookies-popup.styles.configuration-toggle-inactive-color'),
-            'configurationToggleActiveColor' => config('cookies-popup.styles.configuration-toggle-active-color'),
-            'popupCloseButtonMargin' => config('cookies-popup.styles.popup-close-button-margin'),
+            'configurationLabelFontWeight' => config('cookies-popup.custom_styles.configuration_label_font_weight'),
+            'configurationToggleControlColor' => config('cookies-popup.custom_styles.configuration_toggle_control_color'),
+            'configurationToggleInactiveColor' => config('cookies-popup.custom_styles.configuration_toggle_inactive_color'),
+            'configurationToggleActiveColor' => config('cookies-popup.custom_styles.configuration_toggle_active_color'),
+            'popupCloseButtonMargin' => config('cookies-popup.custom_styles.popup_close_button_margin'),
         ];
     }
 
     private static function getScriptReplacements()
     {
-        if (config('cookies-popup.google-consent-mode')) {
+        if (config('cookies-popup.google_consent_mode')) {
             $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/analytical-change-listener-with-consent.stub', []);
             $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/advertising-change-listener-with-consent.stub', []);
 
@@ -102,8 +105,8 @@ class CookiesPopup
             $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/advertising-change-listener.stub', []);
         }
         return [
-            'localStorageKeyName' => config('cookies-popup.localStorage-key-name'),
-            'cookiesPopupDismissible' => config('cookies-popup.cookies-popup-dismissible') ? 1 : 0,
+            'localStorageKeyName' => config('cookies-popup.local_storage_key_name'),
+            'cookiesPopupDismissible' => config('cookies-popup.cookies_popup_dismissible') ? 1 : 0,
             'cookiesConfigureUrl' => route('cookies-popup-save-configuration'),
             'analyticalChangeListener' => $analyticalChangeListener,
             'advertisingChangeListener' => $advertisingChangeListener,
@@ -135,7 +138,7 @@ class CookiesPopup
      */
     public static function getAnalyticsJs()
     {
-        $measurementIds = array_map('trim', explode(',', env('GA_MEASUREMENT_ID')));
+        $measurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
         $firsMeasurementId = $measurementIds[0];
 
         // only put the real GA_MEASUREMENT_ID in production
@@ -144,7 +147,7 @@ class CookiesPopup
             $firsMeasurementId = 'UA-XXXXX-Y';
         }
 
-        return view('cookies-popup::analytics-js', ['measurementIds' => $measurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
+        return view('cookiesPopup::analytics-js', ['measurementIds' => $measurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
     }
 
     /**
@@ -154,10 +157,10 @@ class CookiesPopup
      */
     public static function getGtagJs()
     {
-        $measurementIds = array_map('trim', explode(',', env('GA_MEASUREMENT_ID')));
+        $measurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
         $firsMeasurementId = $measurementIds[0];
 
-        if (!self::allowedAnalyticalCookies() && !config('cookies-popup.google-consent-mode')) {
+        if (!self::allowedAnalyticalCookies() && !config('cookies-popup.google_consent_mode')) {
             return '';
         }
 
@@ -167,7 +170,7 @@ class CookiesPopup
             $firsMeasurementId = 'UA-XXXXX-Y';
         }
 
-        return view('cookies-popup::gtag-js', ['measurementIds' => $measurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
+        return view('cookiesPopup::gtag-js', ['measurementIds' => $measurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
     }
 
 }

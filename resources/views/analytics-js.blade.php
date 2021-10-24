@@ -1,5 +1,5 @@
 @if($firsMeasurementId)
-    @if(config('cookies-popup.use-async-analytics-js'))
+    @if(config('cookies-popup.use_async_analytics_js'))
         <!-- Google Analytics -->
         <script>
             window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

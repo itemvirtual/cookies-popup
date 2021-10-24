@@ -15,7 +15,7 @@ class CookiesPopupServiceProvider extends ServiceProvider
         /*
          * Load views and routes
          */
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cookies-popup');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cookiesPopup');
         $this->loadRoutesFrom(__DIR__ . '/../routes/cookies_popup.php');
 
         if ($this->app->runningInConsole()) {
