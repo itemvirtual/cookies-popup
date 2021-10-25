@@ -1,9 +1,14 @@
 @php($analyticalCookies = false)
+@php($preferencesCookies = false)
 @php($advertisingCookies = false)
 @php($recaptchaCookies = false)
 
 @if(Cookie::get('analytical_cookies') && Cookie::get('analytical_cookies') == 'true')
     @php($analyticalCookies = true)
+@endif
+
+@if(Cookie::get('preferences_cookies') && Cookie::get('preferences_cookies') == 'true')
+    @php($preferencesCookies = true)
 @endif
 
 @if(Cookie::get('advertising_cookies') && Cookie::get('advertising_cookies') == 'true')
@@ -28,8 +33,8 @@
 
         <div class="popup-text {{ config('cookies-popup.custom_classes.popup_text') }}">{!! nl2br(trans($translationsFile . '.cookies-popup-text')) !!}</div>
         <div class="popup-buttons {{ config('cookies-popup.custom_classes.popup_buttons') }}">
-            <a id="cookies-popup-configure" class="btn">{{ trans($translationsFile . '.cookies-popup-configure') }}</a>
-            <a id="cookies-popup-accept" class="btn">{{ trans($translationsFile . '.cookies-popup-accept') }}</a>
+            <a id="cookies-popup-configure" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-configure') }}</a>
+            <a id="cookies-popup-accept" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-accept') }}</a>
         </div>
 
         <div id="cookies-popup-configuration" class="{{ config('cookies-popup.custom_classes.cookies_popup_configuration') }}">
@@ -50,6 +55,25 @@
                     {{ trans($translationsFile . '.accept-required-cookies-info') }}
                 </div>
             </div>
+
+            {{--preferences--}}
+            @if(config('cookies-popup.configure_preferences'))
+                <div>
+                    <div class="accept-cookies-checkbox">
+                        <div class="accept-cookies-label {{ config('cookies-popup.custom_classes.accept_cookies_label') }}">{{ trans($translationsFile . '.accept-preferences-cookies-label') }}</div>
+                        <div>
+                            <label class="toggle-control">
+                                <input type="checkbox" id="preferences-cookies" @if($preferencesCookies) checked @endif>
+                                <span class="control"></span>
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="accept-cookies-info {{ config('cookies-popup.custom_classes.accept_cookies_info') }}">
+                        {{ trans($translationsFile . '.accept-preferences-cookies-info') }}
+                    </div>
+                </div>
+            @endif
 
             {{--analytical--}}
             @if(config('cookies-popup.configure_analytical'))
@@ -109,7 +133,7 @@
             @endif
 
             <div class="popup-buttons {{ config('cookies-popup.custom_classes.popup_buttons') }}">
-                <a id="cookies-popup-close" class="btn">{{ trans($translationsFile . '.cookies-popup-close') }}</a>
+                <a id="cookies-popup-close" class="btn {{ config('cookies-popup.custom_classes.btn') }} {{ config('cookies-popup.custom_classes.cookies_popup_close') }}">{{ trans($translationsFile . '.cookies-popup-close') }}</a>
             </div>
 
         </div>

@@ -27,6 +27,7 @@ protected $except = [
     'analytical_cookies',
     'advertising_cookies',
     'recaptcha_cookies',
+    'preferences_cookies',
 ];
 ```
 
@@ -45,6 +46,8 @@ cookies-popup-configure
 cookies-popup-accept
 accept-required-cookies-label
 accept-required-cookies-info
+accept-preferences-cookies-label
+accept-preferences-cookies-info
 accept-analytical-cookies-label
 accept-analytical-cookies-info
 accept-advertising-cookies-label
@@ -83,6 +86,10 @@ To hide or show content related with the cookies consent, use the `allowed` meth
 @if(\Itemvirtual\CookiesPopup\CookiesPopup::allowedRecaptchaCookies())
 @endif
 ```
+```
+@if(\Itemvirtual\CookiesPopup\CookiesPopup::allowedPreferencesCookies())
+@endif
+```
 
 #### Add Google Analytics scripts
 
@@ -99,6 +106,9 @@ You need to add an env variable `GA_MEASUREMENT_ID` it can be a comma separated 
 GA_MEASUREMENT_ID="UA-XXXXX-Y"
 GA_MEASUREMENT_ID="UA-XXXXX-Y, AW-XXXXXXX"
 ```
+
+The `analytics.js` script can be normal or `async` script [more info](https://developers.google.com/analytics/devguides/collection/analyticsjs#alternative_async_tag)  
+
 [analytics.js](https://developers.google.com/analytics/devguides/collection/analyticsjs)  
 [Universal Analytics (gtag.js)](https://developers.google.com/analytics/devguides/collection/gtagjs)
 

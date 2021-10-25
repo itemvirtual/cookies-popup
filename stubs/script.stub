@@ -32,6 +32,11 @@ window.onload = function() {
         showCookiesPopup();
     });
 
+    $(document).on('change', '#preferences-cookies', function (e) {
+        var isChecked = this.checked;
+        sendCookiesValue(isChecked, 'preferences');
+    });
+
     {{ analyticalChangeListener }}
 
     {{ advertisingChangeListener }}

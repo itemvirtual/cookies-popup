@@ -28,6 +28,9 @@ class CookieController extends BaseController
             case 'analytical':
                 return $this->configureAnalytical($request->get('value'));
                 break;
+            case 'preferences':
+                return $this->configurePreferences($request->get('value'));
+                break;
             case 'advertising':
                 return $this->configureAdvertising($request->get('value'));
                 break;
@@ -42,7 +45,7 @@ class CookieController extends BaseController
 
     private function deleteCookies($arCookies)
     {
-        $cookiesDomain = config('cookies-popup.cookies_domain') ? : '.' . request()->getHost();
+        $cookiesDomain = config('cookies-popup.cookies_domain') ?: '.' . request()->getHost();
 
         foreach ($arCookies as $cookie) {
             if (is_array($cookie)) {
@@ -73,6 +76,22 @@ class CookieController extends BaseController
             ->json(['success' => true, 'message' => ''])
             ->cookie(
                 'analytical_cookies', $value, $this->cookieLiveTime
+            );
+    }
+
+    private function configurePreferences($value)
+    {
+
+        if ($value == 'false') {
+            // Delete Preferences
+            $arCookies = config('cookies-popup.preferences_cookies');
+            $this->deleteCookies($arCookies);
+        }
+
+        return response()
+            ->json(['success' => true, 'message' => ''])
+            ->cookie(
+                'preferences_cookies', $value, $this->cookieLiveTime
             );
     }
 
@@ -113,6 +132,9 @@ class CookieController extends BaseController
 
         return response()
             ->json(['success' => true, 'message' => ''])
+            ->cookie(
+                'preferences_cookies', 'true', $this->cookieLiveTime
+            )
             ->cookie(
                 'analytical_cookies', 'true', $this->cookieLiveTime
             )

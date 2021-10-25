@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.0 - 2021-10-25
+
+- add preferences cookies
+
 ## 1.0.6 - 2021-10-24
 
 - config rename

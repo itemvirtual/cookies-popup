@@ -21,6 +21,7 @@ return [
     'configure_analytical' => true,
     'configure_advertising' => false,
     'configure_recaptcha' => false,
+    'configure_preferences' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ return [
     |
     */
 
-    'translations_file' => 'labels',
+    'translations_file' => 'cookies-popup',
 
     /*
     |--------------------------------------------------------------------------
@@ -89,9 +90,11 @@ return [
         'popup_title' => '',
         'popup_text' => '',
         'popup_buttons' => '',
+        'btn' => '',
         'cookies_popup_configuration' => '',
         'accept_cookies_label' => '',
         'accept_cookies_info' => '',
+        'cookies_popup_close' => '',
     ],
 
     /*
@@ -120,6 +123,7 @@ return [
         ['IDE' => '.doubleclick.net']
     ],
     'recaptcha_cookies' => [],
+    'preferences_cookies' => [],
 
     /*
     |--------------------------------------------------------------------------

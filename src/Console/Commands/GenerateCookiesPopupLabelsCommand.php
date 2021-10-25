@@ -143,6 +143,28 @@ class GenerateCookiesPopupLabelsCommand extends Command
                     'text' => 'Required cookies are strictly essential to ensure the proper functioning of the website.'
                 ]
             ],
+            'accept-preferences-cookies-label' => [
+                'es' => [
+                    'text' => 'Preferencias'
+                ],
+                'ca' => [
+                    'text' => 'Preferències'
+                ],
+                'en' => [
+                    'text' => 'Preferences'
+                ]
+            ],
+            'accept-preferences-cookies-info' => [
+                'es' => [
+                    'text' => 'Las cookies de preferencia permiten que un sitio web recuerde información que cambia la forma en que se comporta o se ve el sitio web, como su idioma preferido o configuraciones personalizadas.'
+                ],
+                'ca' => [
+                    'text' => 'Les cookies de preferència permeten que un lloc web recordi informació que canvia la forma en què es comporta o es veu el lloc web, com el seu idioma preferit o configuracions personalitzades.'
+                ],
+                'en' => [
+                    'text' => 'Preference cookies allow a website to remember information that changes the way the website behaves or looks, such as your preferred language or custom settings.'
+                ]
+            ],
             'accept-analytical-cookies-label' => [
                 'es' => [
                     'text' => 'Analíticas'

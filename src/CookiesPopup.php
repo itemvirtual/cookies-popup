@@ -39,6 +39,16 @@ class CookiesPopup
     }
 
     /**
+     * Check if user consent recaptcha cookies
+     *
+     * @return bool
+     */
+    public static function allowedPreferencesCookies()
+    {
+        return Cookie::get('preferences_cookies') == 'true';
+    }
+
+    /**
      * Get cookies popup template, styles and scripts
      *
      * @return string
