@@ -151,6 +151,10 @@ class CookiesPopup
         $measurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
         $firsMeasurementId = $measurementIds[0];
 
+        if (!self::allowedAnalyticalCookies()) {
+            return '';
+        }
+
         // only put the real GA_MEASUREMENT_ID in production
         if (env('APP_ENV') != 'production') {
             $measurementIds = ['UA-XXXXX-Y'];
