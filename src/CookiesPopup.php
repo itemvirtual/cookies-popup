@@ -146,22 +146,26 @@ class CookiesPopup
      *
      * @return string
      */
-    public static function getAnalyticsJs()
+    public static function getAnalyticsJs($measurementIds = null)
     {
-        $measurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
-        $firsMeasurementId = $measurementIds[0];
+        if ($measurementIds) {
+            $arMeasurementIds = array_map('trim', explode(',', $measurementIds));
+        } else {
+            $arMeasurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
+        }
+        $firsMeasurementId = $arMeasurementIds[0];
 
         if (!self::allowedAnalyticalCookies()) {
             return '';
         }
 
-        // only put the real GA_MEASUREMENT_ID in production
-        if (env('APP_ENV') != 'production') {
-            $measurementIds = ['UA-XXXXX-Y'];
-            $firsMeasurementId = 'UA-XXXXX-Y';
+        // only put the real GA_MEASUREMENT_ID in production, or the GA_MEASUREMENT_ID provided by the user
+        if (env('APP_ENV') != 'production' && !$measurementIds) {
+            $arMeasurementIds = ['UA-XXXXXXXX-X'];
+            $firsMeasurementId = 'UA-XXXXXXXX-X';
         }
 
-        return view('cookiesPopup::analytics-js', ['measurementIds' => $measurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
+        return view('cookiesPopup::analytics-js', ['measurementIds' => $arMeasurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
     }
 
     /**
@@ -169,22 +173,26 @@ class CookiesPopup
      *
      * @return string
      */
-    public static function getGtagJs()
+    public static function getGtagJs($measurementIds = null)
     {
-        $measurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
-        $firsMeasurementId = $measurementIds[0];
+        if ($measurementIds) {
+            $arMeasurementIds = array_map('trim', explode(',', $measurementIds));
+        } else {
+            $arMeasurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
+        }
+        $firsMeasurementId = $arMeasurementIds[0];
 
         if (!self::allowedAnalyticalCookies() && !config('cookies-popup.google_consent_mode')) {
             return '';
         }
 
-        // only put the real GA_MEASUREMENT_ID in production
-        if (env('APP_ENV') != 'production') {
-            $measurementIds = ['UA-XXXXX-Y'];
-            $firsMeasurementId = 'UA-XXXXX-Y';
+        // only put the real GA_MEASUREMENT_ID in production, or the GA_MEASUREMENT_ID provided by the user
+        if (env('APP_ENV') != 'production' && !$measurementIds) {
+            $arMeasurementIds = ['G-XXXXXXXXXX'];
+            $firsMeasurementId = 'G-XXXXXXXXXX';
         }
 
-        return view('cookiesPopup::gtag-js', ['measurementIds' => $measurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
+        return view('cookiesPopup::gtag-js', ['measurementIds' => $arMeasurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
     }
 
 }

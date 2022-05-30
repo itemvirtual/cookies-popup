@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.2 - 2022-05-30
+
+- Add $measurementIds parameter to getAnalyticsJs() and getGtagJs()
+
 ## 1.1.1 - 2021-10-26
 
 - prevent show analytics script if not allowed cookies

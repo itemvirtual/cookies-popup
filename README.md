@@ -103,8 +103,8 @@ To add the scripts in your layout (`gtag.js` or `analytics.js`), use the method 
 
 You need to add an env variable `GA_MEASUREMENT_ID` it can be a comma separated array
 ```bash
-GA_MEASUREMENT_ID="UA-XXXXX-Y"
-GA_MEASUREMENT_ID="UA-XXXXX-Y, AW-XXXXXXX"
+GA_MEASUREMENT_ID="UA-XXXXXXXX-X"
+GA_MEASUREMENT_ID="G-XXXXXXXXXX, AW-XXXXXXXXXX"
 ```
 
 The `analytics.js` script can be normal or `async` script [more info](https://developers.google.com/analytics/devguides/collection/analyticsjs#alternative_async_tag)  
