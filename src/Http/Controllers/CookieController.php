@@ -38,7 +38,7 @@ class CookieController extends BaseController
                 return $this->configureRecaptcha($request->get('value'));
                 break;
             default:
-                return $this->configureAll();
+                return $this->configureAll($request->get('value'));
                 break;
         }
     }
@@ -65,7 +65,6 @@ class CookieController extends BaseController
 
     private function configureAnalytical($value)
     {
-
         if ($value == 'false') {
             // Delete Google analytics
             $arCookies = config('cookies-popup.analytical_cookies');
@@ -81,7 +80,6 @@ class CookieController extends BaseController
 
     private function configurePreferences($value)
     {
-
         if ($value == 'false') {
             // Delete Preferences
             $arCookies = config('cookies-popup.preferences_cookies');
@@ -97,7 +95,6 @@ class CookieController extends BaseController
 
     private function configureAdvertising($value)
     {
-
         if ($value == 'false') {
             // Delete Advertising
             $arCookies = config('cookies-popup.advertising_cookies');
@@ -113,7 +110,6 @@ class CookieController extends BaseController
 
     private function configureRecaptcha($value)
     {
-
         if ($value == 'false') {
             // Delete Recaptcha
             $arCookies = config('cookies-popup.recaptcha_cookies');
@@ -127,22 +123,36 @@ class CookieController extends BaseController
             );
     }
 
-    private function configureAll()
+    private function configureAll($value)
     {
+        if ($value == 'false') {
+            // Delete all cookies
+            $arCookiesAnalytical = config('cookies-popup.analytical_cookies');
+            $this->deleteCookies($arCookiesAnalytical);
+
+            $arCookiesPreferences = config('cookies-popup.preferences_cookies');
+            $this->deleteCookies($arCookiesPreferences);
+
+            $arCookiesAdvertising = config('cookies-popup.advertising_cookies');
+            $this->deleteCookies($arCookiesAdvertising);
+
+            $arCookiesRecaptcha = config('cookies-popup.recaptcha_cookies');
+            $this->deleteCookies($arCookiesRecaptcha);
+        }
 
         return response()
             ->json(['success' => true, 'message' => ''])
             ->cookie(
-                'preferences_cookies', 'true', $this->cookieLiveTime
+                'preferences_cookies', $value, $this->cookieLiveTime
             )
             ->cookie(
-                'analytical_cookies', 'true', $this->cookieLiveTime
+                'analytical_cookies', $value, $this->cookieLiveTime
             )
             ->cookie(
-                'advertising_cookies', 'true', $this->cookieLiveTime
+                'advertising_cookies', $value, $this->cookieLiveTime
             )
             ->cookie(
-                'recaptcha_cookies', 'true', $this->cookieLiveTime
+                'recaptcha_cookies', $value, $this->cookieLiveTime
             );
     }
 

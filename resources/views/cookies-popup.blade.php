@@ -35,6 +35,7 @@
         <div class="popup-buttons {{ config('cookies-popup.custom_classes.popup_buttons') }}">
             <a id="cookies-popup-configure" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-configure') }}</a>
             <a id="cookies-popup-accept" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-accept') }}</a>
+            <a id="cookies-popup-decline" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-decline') }}</a>
         </div>
 
         <div id="cookies-popup-configuration" class="{{ config('cookies-popup.custom_classes.cookies_popup_configuration') }}">

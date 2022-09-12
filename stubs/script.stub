@@ -23,6 +23,11 @@ window.onload = function() {
         hideCookiesPopup();
     });
 
+    $(document).on('click', '#cookies-popup-decline', function (e) {
+        sendCookiesValue('false', 'all');
+        hideCookiesPopup();
+    });
+
     $(document).on('click', '#cookies-popup-close', function (e) {
         hideCookiesPopup();
     });

@@ -121,6 +121,17 @@ class GenerateCookiesPopupLabelsCommand extends Command
                     'text' => 'Accept all'
                 ]
             ],
+            'cookies-popup-decline' => [
+                'es' => [
+                    'text' => 'Rechazar todas'
+                ],
+                'ca' => [
+                    'text' => 'Rebutjar totes'
+                ],
+                'en' => [
+                    'text' => 'Decline all'
+                ]
+            ],
             'accept-required-cookies-label' => [
                 'es' => [
                     'text' => 'Necesarias'
