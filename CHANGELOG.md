@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.3 - 2022-09-12
+
+- Add cookies-popup-decline button
+
 ## 1.1.2 - 2022-05-30
 
 - Add $measurementIds parameter to getAnalyticsJs() and getGtagJs()
