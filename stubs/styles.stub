@@ -63,6 +63,13 @@
     justify-content: center;
 }
 
+/* media-breakpoint-down(sm) */
+@media (max-width: 767.98px) {
+    .overlay .popup-buttons {
+        flex-wrap: wrap;
+    }
+}
+
 .overlay .popup-buttons a {
     display: inline-block;
     cursor: pointer;
