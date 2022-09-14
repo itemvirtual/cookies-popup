@@ -55,6 +55,7 @@ accept-advertising-cookies-info
 accept-recaptcha-cookies-label
 accept-recaptcha-cookies-info
 cookies-popup-close
+cookies-configure-link
 ```
 
 ## Usage

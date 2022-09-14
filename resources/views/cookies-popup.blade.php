@@ -34,7 +34,9 @@
         <div class="popup-text {{ config('cookies-popup.custom_classes.popup_text') }}">{!! nl2br(trans($translationsFile . '.cookies-popup-text')) !!}</div>
         <div class="popup-buttons {{ config('cookies-popup.custom_classes.popup_buttons') }}">
             <a id="cookies-popup-accept" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-accept') }}</a>
-            <a id="cookies-popup-decline" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-decline') }}</a>
+            @if(config('cookies-popup.decline_all_button'))
+                <a id="cookies-popup-decline" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-decline') }}</a>
+            @endif
             <a id="cookies-popup-configure" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-configure') }}</a>
         </div>
 

@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.5 - 2022-09-14
+
+- Add decline_all_button to config
+
 ## 1.1.4 - 2022-09-14
 
 - Change cookies-popup buttons
