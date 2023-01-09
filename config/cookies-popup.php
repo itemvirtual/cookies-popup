@@ -9,7 +9,7 @@ return [
     |
     */
 
-    'local_storage_key_name' => 'accepted-cookies-popup',
+    'local_storage_key_name' => env('COOKIES_POPUP_KEY_NAME', 'accepted-cookies-popup'),
 
     /*
     |--------------------------------------------------------------------------

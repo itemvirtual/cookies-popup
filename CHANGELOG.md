@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.6 - 2023-01-09
+
+- Remove illuminate/support dependency
+
 ## 1.1.5 - 2022-09-14
 
 - Add decline_all_button to config
