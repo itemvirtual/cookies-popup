@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.7 - 2023-06-13
+
+- Change popup-buttons a to button
+
 ## 1.1.6 - 2023-01-09
 
 - Remove illuminate/support dependency

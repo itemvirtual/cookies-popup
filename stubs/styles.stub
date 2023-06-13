@@ -70,7 +70,7 @@
     }
 }
 
-.overlay .popup-buttons a {
+.overlay .popup-buttons button {
     display: inline-block;
     cursor: pointer;
     border: 1px solid {{ buttonBorderColor }};
@@ -82,7 +82,7 @@
     padding: {{ buttonPadding }};
 }
 
-.overlay .popup-buttons a:hover {
+.overlay .popup-buttons button:hover {
     background: {{ buttonTextColor }};
     color: {{ buttonBackgroundColor }};
 }

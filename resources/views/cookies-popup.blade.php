@@ -33,11 +33,11 @@
 
         <div class="popup-text {{ config('cookies-popup.custom_classes.popup_text') }}">{!! nl2br(trans($translationsFile . '.cookies-popup-text')) !!}</div>
         <div class="popup-buttons {{ config('cookies-popup.custom_classes.popup_buttons') }}">
-            <a id="cookies-popup-accept" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-accept') }}</a>
+            <button id="cookies-popup-accept" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-accept') }}</button>
             @if(config('cookies-popup.decline_all_button'))
-                <a id="cookies-popup-decline" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-decline') }}</a>
+                <button id="cookies-popup-decline" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-decline') }}</button>
             @endif
-            <a id="cookies-popup-configure" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-configure') }}</a>
+            <button id="cookies-popup-configure" class="btn {{ config('cookies-popup.custom_classes.btn') }}">{{ trans($translationsFile . '.cookies-popup-configure') }}</button>
         </div>
 
         <div id="cookies-popup-configuration" class="{{ config('cookies-popup.custom_classes.cookies_popup_configuration') }}">
@@ -136,7 +136,7 @@
             @endif
 
             <div class="popup-buttons {{ config('cookies-popup.custom_classes.popup_buttons') }}">
-                <a id="cookies-popup-close" class="btn {{ config('cookies-popup.custom_classes.btn') }} {{ config('cookies-popup.custom_classes.cookies_popup_close') }}">{{ trans($translationsFile . '.cookies-popup-close') }}</a>
+                <button id="cookies-popup-close" class="btn {{ config('cookies-popup.custom_classes.btn') }} {{ config('cookies-popup.custom_classes.cookies_popup_close') }}">{{ trans($translationsFile . '.cookies-popup-close') }}</button>
             </div>
 
         </div>
