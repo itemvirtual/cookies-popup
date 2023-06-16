@@ -2,6 +2,24 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.8 - 2023-06-16
+
+- cookiesPopupReloadOnClose
+
+> Add `cookies_popup_reload_on_close` in your `config/cookies-popup.php`
+
+```php
+/*
+|--------------------------------------------------------------------------
+| Reload after hide cookies popup
+|--------------------------------------------------------------------------
+|
+| use location.reload(); to refresh the page
+|
+*/
+
+'cookies_popup_reload_on_close' => false,
+```
 ## 1.1.7 - 2023-06-13
 
 - Change popup-buttons a to button

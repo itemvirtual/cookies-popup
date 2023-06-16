@@ -2,6 +2,7 @@ window.onload = function() {
 
     var cookiesToggleTimeout = 300;
     var cookiesPopupDismissible = {{ cookiesPopupDismissible }};
+    var cookiesPopupReloadOnClose = {{ cookiesPopupReloadOnClose }};
 
     (function checkCookiesPopup() {
         try {
@@ -54,6 +55,9 @@ window.onload = function() {
     function hideCookiesPopup() {
         localStorage.setItem('{{ localStorageKeyName }}', true);
         $('#cookies-popup-overlay').fadeOut(cookiesToggleTimeout);
+        if (cookiesPopupReloadOnClose){
+            location.reload();
+        }
     }
 
     function showCookiesPopup() {

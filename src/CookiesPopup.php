@@ -117,6 +117,7 @@ class CookiesPopup
         return [
             'localStorageKeyName' => config('cookies-popup.local_storage_key_name'),
             'cookiesPopupDismissible' => config('cookies-popup.cookies_popup_dismissible') ? 1 : 0,
+            'cookiesPopupReloadOnClose' => config('cookies-popup.cookies_popup_reload_on_close') ? 1 : 0,
             'cookiesConfigureUrl' => route('cookies-popup-save-configuration'),
             'analyticalChangeListener' => $analyticalChangeListener,
             'advertisingChangeListener' => $advertisingChangeListener,
