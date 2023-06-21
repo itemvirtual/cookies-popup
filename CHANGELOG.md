@@ -2,6 +2,24 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.9 - 2023-06-21
+
+- Popup Timeouts
+
+> Add `show_cookies_popup_timeout` and `hide_cookies_popup_timeout` in your `config/cookies-popup.php`
+
+```php
+/*
+|--------------------------------------------------------------------------
+| Timeouts
+|--------------------------------------------------------------------------
+|
+*/
+
+'show_cookies_popup_timeout' => 1000,
+'hide_cookies_popup_timeout' => 1000,
+```
+
 ## 1.1.8 - 2023-06-16
 
 - cookiesPopupReloadOnClose
@@ -20,6 +38,7 @@ All notable changes to `cookies-popup` will be documented in this file
 
 'cookies_popup_reload_on_close' => false,
 ```
+
 ## 1.1.7 - 2023-06-13
 
 - Change popup-buttons a to button

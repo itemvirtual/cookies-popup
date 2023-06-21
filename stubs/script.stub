@@ -8,10 +8,10 @@ window.onload = function() {
         try {
             var acceptedCookiesPopup = localStorage.getItem('{{ localStorageKeyName }}');
             if (!acceptedCookiesPopup) {
-                showCookiesPopup();
+                showCookiesPopup({{ showCookiesTimeoutMilliseconds }});
             }
         } catch (e) {
-            showCookiesPopup();
+            showCookiesPopup({{ showCookiesTimeoutMilliseconds }});
         }
     })();
 
@@ -35,7 +35,7 @@ window.onload = function() {
 
     $(document).on('click', '#cookies-popup-show', function (e) {
         e.preventDefault();
-        showCookiesPopup();
+        showCookiesPopup(10);
     });
 
     $(document).on('change', '#preferences-cookies', function (e) {
@@ -56,14 +56,17 @@ window.onload = function() {
         localStorage.setItem('{{ localStorageKeyName }}', true);
         $('#cookies-popup-overlay').fadeOut(cookiesToggleTimeout);
         if (cookiesPopupReloadOnClose){
-            location.reload();
+            var hideCookiesTimeout = setTimeout(function () {
+            console.log('reloading');
+                location.reload();
+            }, {{ hideCookiesTimeoutMilliseconds }});
         }
     }
 
-    function showCookiesPopup() {
+    function showCookiesPopup(timeoutMilliseconds) {
         var showCookiesTimeout = setTimeout(function () {
             $('#cookies-popup-overlay').fadeIn(cookiesToggleTimeout).css('display', 'flex');
-        }, 500);
+        }, timeoutMilliseconds);
     }
 
     $(document).on('click', '#cookies-popup-overlay', function (e) {

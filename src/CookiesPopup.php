@@ -119,6 +119,8 @@ class CookiesPopup
             'cookiesPopupDismissible' => config('cookies-popup.cookies_popup_dismissible') ? 1 : 0,
             'cookiesPopupReloadOnClose' => config('cookies-popup.cookies_popup_reload_on_close') ? 1 : 0,
             'cookiesConfigureUrl' => route('cookies-popup-save-configuration'),
+            'showCookiesTimeoutMilliseconds' => (int)config('cookies-popup.show_cookies_popup_timeout', 1000),
+            'hideCookiesTimeoutMilliseconds' => (int)config('cookies-popup.hide_cookies_popup_timeout', 1000),
             'analyticalChangeListener' => $analyticalChangeListener,
             'advertisingChangeListener' => $advertisingChangeListener,
         ];
