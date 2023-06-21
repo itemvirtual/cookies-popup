@@ -57,7 +57,6 @@ window.onload = function() {
         $('#cookies-popup-overlay').fadeOut(cookiesToggleTimeout);
         if (cookiesPopupReloadOnClose){
             var hideCookiesTimeout = setTimeout(function () {
-            console.log('reloading');
                 location.reload();
             }, {{ hideCookiesTimeoutMilliseconds }});
         }
