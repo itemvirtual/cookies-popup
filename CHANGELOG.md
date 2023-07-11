@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.10 - 2023-07-11
+
+- Add autocomplete=off to checkbox
+
 ## 1.1.9 - 2023-06-21
 
 - Popup Timeouts
