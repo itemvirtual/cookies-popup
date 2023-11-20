@@ -149,6 +149,17 @@ class CookiesPopup
      *
      * @return string
      */
+    public static function getHeadStyles()
+    {
+        $styles = self::getStubContents(__DIR__ . '/../stubs/styles.stub', self::getStylesReplacements());
+        return view('cookiesPopup::head-styles', ['styles' => $styles])->render();
+    }
+
+    /**
+     * Get ga.js script
+     *
+     * @return string
+     */
     public static function getAnalyticsJs($measurementIds = null)
     {
         if ($measurementIds) {

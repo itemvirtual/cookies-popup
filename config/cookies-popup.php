@@ -46,7 +46,13 @@ return [
     | Styles
     |--------------------------------------------------------------------------
     |
+    | If add-inline-styles is set to false, you should use getHeadStyles inside your <head> html tag.
+    | {!! \Itemvirtual\CookiesPopup\CookiesPopup::getHeadStyles() !!}
+    |
     */
+
+    // Is set to true for backward compatibility
+    'add-inline-styles' => true,
 
     'custom_styles' => [
         'overlay_background_color' => 'rgba(26, 26, 26, .82)',

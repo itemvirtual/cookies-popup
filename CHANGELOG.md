@@ -2,6 +2,16 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.1.11 - 2023-11-20
+
+- Added add-inline-styles to config
+- New Method getHeadStyles()
+- Removed autocomplete=off on checkboxes
+- 
+```php
+{!! \Itemvirtual\CookiesPopup\CookiesPopup::getHeadStyles() !!}
+```
+
 ## 1.1.10 - 2023-07-11
 
 - Add autocomplete=off to checkbox

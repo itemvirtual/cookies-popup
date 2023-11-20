@@ -20,9 +20,11 @@
 @endif
 
 {{--Styles--}}
-<style>
-    {!! $styles !!}
-</style>
+@if(config('cookies-popup.add-inline-styles'))
+    <style>
+        {!! $styles !!}
+    </style>
+@endif
 
 {{--Cookies popup--}}
 <div id="cookies-popup-overlay" class="overlay {{ config('cookies-popup.custom_classes.overlay') }}">
@@ -66,7 +68,7 @@
                         <div class="accept-cookies-label {{ config('cookies-popup.custom_classes.accept_cookies_label') }}">{{ trans($translationsFile . '.accept-preferences-cookies-label') }}</div>
                         <div>
                             <label class="toggle-control">
-                                <input type="checkbox" id="preferences-cookies" @if($preferencesCookies) checked @endif autocomplete="off">
+                                <input type="checkbox" id="preferences-cookies" @if($preferencesCookies) checked @endif>
                                 <span class="control"></span>
                             </label>
                         </div>
@@ -85,7 +87,7 @@
                         <div class="accept-cookies-label {{ config('cookies-popup.custom_classes.accept_cookies_label') }}">{{ trans($translationsFile . '.accept-analytical-cookies-label') }}</div>
                         <div>
                             <label class="toggle-control">
-                                <input type="checkbox" id="analytical-cookies" @if($analyticalCookies) checked @endif autocomplete="off">
+                                <input type="checkbox" id="analytical-cookies" @if($analyticalCookies) checked @endif>
                                 <span class="control"></span>
                             </label>
                         </div>
@@ -104,7 +106,7 @@
                         <div class="accept-cookies-label {{ config('cookies-popup.custom_classes.accept_cookies_label') }}">{{ trans($translationsFile . '.accept-advertising-cookies-label') }}</div>
                         <div>
                             <label class="toggle-control">
-                                <input type="checkbox" id="advertising-cookies" @if($advertisingCookies) checked @endif autocomplete="off">
+                                <input type="checkbox" id="advertising-cookies" @if($advertisingCookies) checked @endif>
                                 <span class="control"></span>
                             </label>
                         </div>
@@ -123,7 +125,7 @@
                         <div class="accept-cookies-label {{ config('cookies-popup.custom_classes.accept_cookies_label') }}">{{ trans($translationsFile . '.accept-recaptcha-cookies-label') }}</div>
                         <div>
                             <label class="toggle-control">
-                                <input type="checkbox" id="recaptcha-cookies" @if($recaptchaCookies) checked @endif autocomplete="off">
+                                <input type="checkbox" id="recaptcha-cookies" @if($recaptchaCookies) checked @endif>
                                 <span class="control"></span>
                             </label>
                         </div>
