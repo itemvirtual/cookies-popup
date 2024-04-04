@@ -193,5 +193,6 @@ return [
     */
 
     'google_consent_mode' => false,
+    'google_consent_delete_cookie' => true,
 
 ];

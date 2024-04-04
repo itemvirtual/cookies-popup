@@ -3,7 +3,5 @@ $(document).on('change', '#advertising-cookies', function (e) {
     var consentStatus = isChecked ? 'granted' : 'denied';
 
     sendCookiesValue(isChecked, 'advertising');
-    gtag('consent', 'update', {
-        'ad_storage': consentStatus
-    });
+    setAdvertisingConsent(consentStatus);
 });

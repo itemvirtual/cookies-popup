@@ -1,4 +1,4 @@
-@if($firsMeasurementId)
+@if($firstMeasurementId)
     @if(config('cookies-popup.use_async_analytics_js'))
         <!-- Google Analytics -->
         <script>

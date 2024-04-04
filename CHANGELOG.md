@@ -2,6 +2,12 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.2.0 - 2024-04-04
+
+- Google consent mode
+
+> Add `google_consent_delete_cookie` in your `config/cookies-popup.php`
+
 ## 1.1.11 - 2023-11-20
 
 - Added add-inline-styles to config

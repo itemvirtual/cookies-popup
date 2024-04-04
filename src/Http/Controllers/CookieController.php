@@ -13,7 +13,7 @@ class CookieController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    private $cookieLiveTime;
+    private $cookieLifetime;
 
     /**
      * @param Request $request
@@ -22,7 +22,7 @@ class CookieController extends BaseController
 
     public function configureCookies(Request $request)
     {
-        $this->cookieLiveTime = (60 * 24 * 365 * 5); // 5 años en minutos
+        $this->cookieLifetime = (60 * 24 * 365 * 5); // 5 años en minutos
 
         switch ($request->get('type')) {
             case 'analytical':
@@ -46,6 +46,11 @@ class CookieController extends BaseController
     private function deleteCookies($arCookies)
     {
         $cookiesDomain = config('cookies-popup.cookies_domain') ?: '.' . request()->getHost();
+
+        // If google_consent_mode is true and google_consent_delete_cookie is false, cookies should not be deleted
+        if (config('cookies-popup.google_consent_mode') && !config('cookies-popup.google_consent_delete_cookie', true)) {
+            return;
+        }
 
         foreach ($arCookies as $cookie) {
             if (is_array($cookie)) {
@@ -74,7 +79,7 @@ class CookieController extends BaseController
         return response()
             ->json(['success' => true, 'message' => ''])
             ->cookie(
-                'analytical_cookies', $value, $this->cookieLiveTime
+                'analytical_cookies', $value, $this->cookieLifetime
             );
     }
 
@@ -89,7 +94,7 @@ class CookieController extends BaseController
         return response()
             ->json(['success' => true, 'message' => ''])
             ->cookie(
-                'preferences_cookies', $value, $this->cookieLiveTime
+                'preferences_cookies', $value, $this->cookieLifetime
             );
     }
 
@@ -104,7 +109,7 @@ class CookieController extends BaseController
         return response()
             ->json(['success' => true, 'message' => ''])
             ->cookie(
-                'advertising_cookies', $value, $this->cookieLiveTime
+                'advertising_cookies', $value, $this->cookieLifetime
             );
     }
 
@@ -119,7 +124,7 @@ class CookieController extends BaseController
         return response()
             ->json(['success' => true, 'message' => ''])
             ->cookie(
-                'recaptcha_cookies', $value, $this->cookieLiveTime
+                'recaptcha_cookies', $value, $this->cookieLifetime
             );
     }
 
@@ -143,16 +148,16 @@ class CookieController extends BaseController
         return response()
             ->json(['success' => true, 'message' => ''])
             ->cookie(
-                'preferences_cookies', $value, $this->cookieLiveTime
+                'preferences_cookies', $value, $this->cookieLifetime
             )
             ->cookie(
-                'analytical_cookies', $value, $this->cookieLiveTime
+                'analytical_cookies', $value, $this->cookieLifetime
             )
             ->cookie(
-                'advertising_cookies', $value, $this->cookieLiveTime
+                'advertising_cookies', $value, $this->cookieLifetime
             )
             ->cookie(
-                'recaptcha_cookies', $value, $this->cookieLiveTime
+                'recaptcha_cookies', $value, $this->cookieLifetime
             );
     }
 

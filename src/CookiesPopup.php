@@ -167,7 +167,7 @@ class CookiesPopup
         } else {
             $arMeasurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
         }
-        $firsMeasurementId = $arMeasurementIds[0];
+        $firstMeasurementId = $arMeasurementIds[0];
 
         if (!self::allowedAnalyticalCookies()) {
             return '';
@@ -176,10 +176,10 @@ class CookiesPopup
         // only put the real GA_MEASUREMENT_ID in production, or the GA_MEASUREMENT_ID provided by the user
         if (env('APP_ENV') != 'production' && !$measurementIds) {
             $arMeasurementIds = ['UA-XXXXXXXX-X'];
-            $firsMeasurementId = 'UA-XXXXXXXX-X';
+            $firstMeasurementId = 'UA-XXXXXXXX-X';
         }
 
-        return view('cookiesPopup::analytics-js', ['measurementIds' => $arMeasurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
+        return view('cookiesPopup::analytics-js', ['measurementIds' => $arMeasurementIds, 'firstMeasurementId' => $firstMeasurementId])->render();
     }
 
     /**
@@ -194,7 +194,7 @@ class CookiesPopup
         } else {
             $arMeasurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
         }
-        $firsMeasurementId = $arMeasurementIds[0];
+        $firstMeasurementId = $arMeasurementIds[0];
 
         if (!self::allowedAnalyticalCookies() && !config('cookies-popup.google_consent_mode')) {
             return '';
@@ -203,10 +203,10 @@ class CookiesPopup
         // only put the real GA_MEASUREMENT_ID in production, or the GA_MEASUREMENT_ID provided by the user
         if (env('APP_ENV') != 'production' && !$measurementIds) {
             $arMeasurementIds = ['G-XXXXXXXXXX'];
-            $firsMeasurementId = 'G-XXXXXXXXXX';
+            $firstMeasurementId = 'G-XXXXXXXXXX';
         }
 
-        return view('cookiesPopup::gtag-js', ['measurementIds' => $arMeasurementIds, 'firsMeasurementId' => $firsMeasurementId])->render();
+        return view('cookiesPopup::gtag-js', ['measurementIds' => $arMeasurementIds, 'firstMeasurementId' => $firstMeasurementId])->render();
     }
 
 }
