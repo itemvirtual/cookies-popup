@@ -2,6 +2,11 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.2.1 - 2024-04-11
+
+- Google consent mode improvement
+
+> Add `google_url_passthrough`, `google_wait_for_update` and `custom_styles.overlay_z_index` in your `config/cookies-popup.php`
 ## 1.2.0 - 2024-04-04
 
 - Google consent mode

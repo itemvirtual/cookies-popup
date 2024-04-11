@@ -55,6 +55,7 @@ return [
     'add-inline-styles' => true,
 
     'custom_styles' => [
+        'overlay_z_index' => '50',
         'overlay_background_color' => 'rgba(26, 26, 26, .82)',
         'popup_box_shadow' => '0 0 18px rgba(0, 0, 0, .2)',
         'popup_background_color' => '#FFF',
@@ -194,5 +195,7 @@ return [
 
     'google_consent_mode' => false,
     'google_consent_delete_cookie' => true,
+    'google_url_passthrough' => false,
+    'google_wait_for_update' => 2000,
 
 ];

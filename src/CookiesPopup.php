@@ -75,6 +75,7 @@ class CookiesPopup
     private static function getStylesReplacements()
     {
         return [
+            'overlayZIndex' => config('cookies-popup.custom_styles.overlay_z_index'),
             'overlayBackgroundColor' => config('cookies-popup.custom_styles.overlay_background_color'),
             'popupBoxShadow' => config('cookies-popup.custom_styles.popup_box_shadow'),
             'popupBackgroundColor' => config('cookies-popup.custom_styles.popup_background_color'),

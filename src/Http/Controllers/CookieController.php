@@ -78,9 +78,7 @@ class CookieController extends BaseController
 
         return response()
             ->json(['success' => true, 'message' => ''])
-            ->cookie(
-                'analytical_cookies', $value, $this->cookieLifetime
-            );
+            ->cookie('analytical_cookies', $value, $this->cookieLifetime);
     }
 
     private function configurePreferences($value)
@@ -93,9 +91,7 @@ class CookieController extends BaseController
 
         return response()
             ->json(['success' => true, 'message' => ''])
-            ->cookie(
-                'preferences_cookies', $value, $this->cookieLifetime
-            );
+            ->cookie('preferences_cookies', $value, $this->cookieLifetime);
     }
 
     private function configureAdvertising($value)
@@ -108,9 +104,7 @@ class CookieController extends BaseController
 
         return response()
             ->json(['success' => true, 'message' => ''])
-            ->cookie(
-                'advertising_cookies', $value, $this->cookieLifetime
-            );
+            ->cookie('advertising_cookies', $value, $this->cookieLifetime);
     }
 
     private function configureRecaptcha($value)
@@ -123,9 +117,7 @@ class CookieController extends BaseController
 
         return response()
             ->json(['success' => true, 'message' => ''])
-            ->cookie(
-                'recaptcha_cookies', $value, $this->cookieLifetime
-            );
+            ->cookie('recaptcha_cookies', $value, $this->cookieLifetime);
     }
 
     private function configureAll($value)
@@ -145,20 +137,22 @@ class CookieController extends BaseController
             $this->deleteCookies($arCookiesRecaptcha);
         }
 
-        return response()
-            ->json(['success' => true, 'message' => ''])
-            ->cookie(
-                'preferences_cookies', $value, $this->cookieLifetime
-            )
-            ->cookie(
-                'analytical_cookies', $value, $this->cookieLifetime
-            )
-            ->cookie(
-                'advertising_cookies', $value, $this->cookieLifetime
-            )
-            ->cookie(
-                'recaptcha_cookies', $value, $this->cookieLifetime
-            );
+        $response = response()->json(['success' => true, 'message' => '']);
+
+        if (config('cookies-popup.configure_preferences')) {
+            $response->cookie('preferences_cookies', $value, $this->cookieLifetime);
+        }
+        if (config('cookies-popup.configure_analytical')) {
+            $response->cookie('analytical_cookies', $value, $this->cookieLifetime);
+        }
+        if (config('cookies-popup.configure_advertising')) {
+            $response->cookie('advertising_cookies', $value, $this->cookieLifetime);
+        }
+        if (config('cookies-popup.configure_recaptcha')) {
+            $response->cookie('recaptcha_cookies', $value, $this->cookieLifetime);
+        }
+
+        return $response;
     }
 
 }

@@ -5,7 +5,7 @@
 .overlay {
     position: fixed;
     overflow: hidden;
-    z-index: 50;
+    z-index: {{ overlayZIndex }};
     background: {{ overlayBackgroundColor }};
     width: 100vw;
     height: 100vh;
