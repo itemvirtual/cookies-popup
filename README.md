@@ -21,7 +21,7 @@ Publish config file (with --force option to update)
 php artisan vendor:publish --provider="Itemvirtual\CookiesPopup\CookiesPopupServiceProvider" --tag=config
 ```
 
-You need to add package cookies to the `EncryptCookies` except array
+You need to add package cookies name to the `EncryptCookies` except array
 
 ```php
 # file app/Http/Middleware/EncryptCookies.php
@@ -31,6 +31,18 @@ protected $except = [
     'recaptcha_cookies',
     'preferences_cookies',
 ];
+```
+
+In laravel 11 you should add the cookies name to the `encryptCookies` method in your application's `bootstrap/app.php` file
+```php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->encryptCookies(except: [
+        'analytical_cookies',
+        'advertising_cookies',
+        'recaptcha_cookies',
+        'preferences_cookies',
+    ]);
+})
 ```
 
 ### Generate translations
