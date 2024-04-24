@@ -191,11 +191,11 @@ class CookiesPopup
     public static function getGtagJs($measurementIds = null)
     {
         if ($measurementIds) {
-            $arMeasurementIds = array_map('trim', explode(',', $measurementIds));
+            $arMeasurementIds = array_filter(array_map('trim', explode(',', $measurementIds)));
         } else {
-            $arMeasurementIds = array_map('trim', explode(',', config('cookies-popup.ga_measurement_id')));
+            $arMeasurementIds = array_filter(array_map('trim', explode(',', config('cookies-popup.ga_measurement_id'))));
         }
-        $firstMeasurementId = $arMeasurementIds[0];
+        $firstMeasurementId = array_key_exists(0, $arMeasurementIds) ? $arMeasurementIds[0] : null;
 
         if (!self::allowedAnalyticalCookies() && !config('cookies-popup.google_consent_mode')) {
             return '';

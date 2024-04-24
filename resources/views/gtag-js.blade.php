@@ -25,6 +25,10 @@
         gtag('set', 'url_passthrough', true);
         @endif
 
+        @if(config('cookies-popup.google_ads_data_redaction'))
+        gtag('set', 'ads_data_redaction', true);
+        @endif
+
     </script>
     @endif
 
@@ -51,6 +55,7 @@
         function setAnalyticalConsent(value) {
             setConsentForAnalyticsStorage(value);
         }
+
         function setAdvertisingConsent(value) {
             setConsentForAdStorage(value);
             setConsentForAdUserData(value);
@@ -60,24 +65,35 @@
         /** ************************************ */
 
         function setConsentForAdStorage(value) {
+            @if($firstMeasurementId)
             gtag('consent', 'update', {
                 'ad_storage': value
             });
+            @endif
         }
+
         function setConsentForAdUserData(value) {
+            @if($firstMeasurementId)
             gtag('consent', 'update', {
                 'ad_user_data': value
             });
+            @endif
         }
+
         function setConsentForAdPersonalization(value) {
+            @if($firstMeasurementId)
             gtag('consent', 'update', {
                 'ad_personalization': value
             });
+            @endif
         }
+
         function setConsentForAnalyticsStorage(value) {
+            @if($firstMeasurementId)
             gtag('consent', 'update', {
                 'analytics_storage': value
             });
+            @endif
         }
     </script>
 @endif

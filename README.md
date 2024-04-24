@@ -152,6 +152,16 @@ The `custom_styles` or `custom_classes` config parameters.
 With `custom_styles` you can change some CSS styles. If you need a deeper design change,
 use `custom_classes`, which will concatenate your class to the generic one
 
+### Documentation links
+
+Google Consent Mode  
+
+[Cómo configurar el modo de consentimiento en sitios web](https://developers.google.com/tag-platform/security/guides/consent)  
+[Cómo solucionar problemas del modo de consentimiento con Tag Assistant](https://developers.google.com/tag-platform/security/guides/consent-debugging)  
+[Tag Manager consent mode support](https://support.google.com/tagmanager/answer/10718549)  
+[Google Tag Assistant](https://tagassistant.google.com)  
+
+
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

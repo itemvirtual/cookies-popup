@@ -196,6 +196,7 @@ return [
     'google_consent_mode' => false,
     'google_consent_delete_cookie' => true,
     'google_url_passthrough' => false,
+    'google_ads_data_redaction' => false,
     'google_wait_for_update' => 2000,
 
 ];
