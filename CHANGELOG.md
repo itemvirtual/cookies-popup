@@ -2,6 +2,12 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.2.3 - 2024-06-28
+
+- No jQuery option
+- Add `no_jquery_scripts` (optional) in your `config/cookies-popup.php`
+- `GenerateCookiesPopupLabelsCommand` save to file
+
 ## 1.2.2 - 2024-04-24
 
 - Google consent mode improvement

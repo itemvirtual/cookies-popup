@@ -1,0 +1,7 @@
+var advertisingCookiesElement = document.getElementById('advertising-cookies');
+if (advertisingCookiesElement) {
+    advertisingCookiesElement.addEventListener('change', function(e) {
+        var isChecked = this.checked ? 'true' : 'false';
+        sendCookiesValue(isChecked, 'advertising');
+    });
+}

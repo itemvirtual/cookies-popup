@@ -1,0 +1,7 @@
+var analyticalCookiesElement = document.getElementById('analytical-cookies');
+if (analyticalCookiesElement) {
+    analyticalCookiesElement.addEventListener('change', function(e) {
+        var isChecked = this.checked ? 'true' : 'false';
+        sendCookiesValue(isChecked, 'analytical');
+    });
+}

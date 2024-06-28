@@ -1,0 +1,10 @@
+var analyticalCookiesElement = document.getElementById('analytical-cookies');
+if (analyticalCookiesElement) {
+    analyticalCookiesElement.addEventListener('change', function(e) {
+        var isChecked = this.checked ? 'true' : 'false';
+        var consentStatus = this.checked ? 'granted' : 'denied';
+
+        sendCookiesValue(isChecked, 'analytical');
+        setAnalyticalConsent(consentStatus);
+    });
+}

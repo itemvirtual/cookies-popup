@@ -2,7 +2,9 @@
 
 namespace Itemvirtual\CookiesPopup\Console\Commands;
 
+use App\Models\Label;
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 
 /**
  * USAGE
@@ -16,7 +18,9 @@ class GenerateCookiesPopupLabelsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'cookies-popup:generate-labels';
+    protected $signature = 'cookies-popup:generate-labels
+                            {--D|database : Create labels in DB}
+                            {--L|laravel-version= : Laravel version}';
 
     /**
      * The console command description.
@@ -42,10 +46,30 @@ class GenerateCookiesPopupLabelsCommand extends Command
      */
     public function handle()
     {
+        $saveInDatabase = $this->option('database');
+        $laravelVersion = $this->option('laravel-version');
+
+        if ($saveInDatabase) {
+            $this->saveToDatabase($laravelVersion);
+        } else {
+            $this->saveToLangFiles();
+        }
+        return Command::SUCCESS;
+    }
+
+    private function saveToDatabase($laravelVersion)
+    {
         $keysCreated = [];
         $keysAlreadyExist = [];
 
-        foreach ($this->getLabels() as $key => $label) {
+
+        if ($laravelVersion && $laravelVersion < 11) {
+            $labels = $this->getLabels();
+        } else {
+            $labels = $this->getNewLabels();
+        }
+
+        foreach ($labels as $key => $label) {
             $alreadySavedKey = \App\Models\Label::where('selector', $key)->first();
 
             if ($alreadySavedKey) {
@@ -68,6 +92,39 @@ class GenerateCookiesPopupLabelsCommand extends Command
             $this->info('Labels created:');
             foreach ($keysCreated as $keyCreated) {
                 $this->info($keyCreated);
+            }
+        }
+
+        return Command::SUCCESS;
+    }
+
+    private function saveToLangFiles()
+    {
+        $arLang = [];
+        foreach ($this->getLabels() as $selector => $translations) {
+            foreach ($translations as $locale => $translation) {
+                $arLang[$locale][$selector] = $translation['text'];
+            }
+        }
+
+        foreach ($arLang as $locale => $label) {
+            (new Filesystem())->ensureDirectoryExists(base_path('lang/' . $locale));
+            $file = base_path('lang/' . $locale . '/cookies-popup.php');
+            $translationFile = fopen($file, 'w') or die('Unable to open file!');
+
+            fwrite($translationFile, '<?php ' . PHP_EOL . PHP_EOL . 'return [' . PHP_EOL);
+
+            foreach ($label as $selector => $value) {
+                $value = str_replace('"', '\'', $value);
+                $value = addslashes($value);
+                $value = str_replace('&nbsp;', ' ', $value);
+                fwrite($translationFile, "\t" . '\'' . $selector . '\' => \'' . $value . '\',' . PHP_EOL);
+            }
+            fwrite($translationFile, '];');
+            fclose($translationFile);
+
+            if (app()->runningInConsole()) {
+                chmod($file, 0766);
             }
         }
 
@@ -405,7 +462,7 @@ class GenerateCookiesPopupLabelsCommand extends Command
                     'text' => 'Configurar cookies'
                 ],
                 'en' => [
-                    'text' => 'Manage cookies	'
+                    'text' => 'Manage cookies'
                 ],
                 'fr' => [
                     'text' => 'Paramétrer les cookies'
@@ -419,5 +476,20 @@ class GenerateCookiesPopupLabelsCommand extends Command
             ],
         ];
 
+    }
+
+    private function getNewLabels()
+    {
+        $transformedArray = [];
+
+        foreach ($this->getLabels() as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $lang => $text) {
+                    $transformedArray[$key]['text'][$lang] = $text['text'];
+                }
+            }
+        }
+
+        return $transformedArray;
     }
 }

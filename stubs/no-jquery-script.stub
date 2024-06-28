@@ -1,0 +1,152 @@
+window.onload = function() {
+
+    var cookiesToggleTimeout = 300;
+    var cookiesPopupDismissible = {{ cookiesPopupDismissible }};
+    var cookiesPopupReloadOnClose = {{ cookiesPopupReloadOnClose }};
+
+    (function checkCookiesPopup() {
+        try {
+            var acceptedCookiesPopup = localStorage.getItem('{{ localStorageKeyName }}');
+            if (!acceptedCookiesPopup) {
+                showCookiesPopup({{ showCookiesTimeoutMilliseconds }});
+            }
+        } catch (e) {
+            showCookiesPopup({{ showCookiesTimeoutMilliseconds }});
+        }
+    })();
+
+    document.addEventListener('click', function(e) {
+        if(e.target && e.target.id === 'cookies-popup-configure') {
+            var cookiesPopupConfiguration = document.getElementById('cookies-popup-configuration');
+            if(cookiesPopupConfiguration.style.display === 'none' || cookiesPopupConfiguration.style.display === '') {
+                cookiesPopupConfiguration.style.display = 'block';
+            } else {
+                cookiesPopupConfiguration.style.display = 'none';
+            }
+        }
+    });
+
+
+    document.addEventListener('click', function(e) {
+        if(e.target && e.target.id === 'cookies-popup-accept') {
+            sendCookiesValue('true', 'all');
+            setAnalyticalConsent('granted');
+            setAdvertisingConsent('granted');
+            hideCookiesPopup();
+        }
+    });
+
+
+    document.addEventListener('click', function(e) {
+        if(e.target && e.target.id === 'cookies-popup-decline') {
+            sendCookiesValue('false', 'all');
+            setAnalyticalConsent('denied');
+            setAdvertisingConsent('denied');
+            hideCookiesPopup();
+        }
+    });
+
+
+    document.addEventListener('click', function(e) {
+        if(e.target && e.target.id === 'cookies-popup-close') {
+            hideCookiesPopup();
+        }
+    });
+
+
+    document.addEventListener('click', function(e) {
+        if(e.target && e.target.id === 'cookies-popup-show') {
+            e.preventDefault();
+            showCookiesPopup(10);
+        }
+    });
+
+
+    var preferencesCookiesElement = document.getElementById('preferences-cookies');
+    if (preferencesCookiesElement) {
+        preferencesCookiesElement.addEventListener('change', function(e) {
+            var isChecked = this.checked ? 'true' : 'false';
+            sendCookiesValue(isChecked, 'preferences');
+        });
+    }
+
+
+    {{ analyticalChangeListener }}
+
+    {{ advertisingChangeListener }}
+
+
+    var recaptchaCookiesElement = document.getElementById('recaptcha-cookies');
+    if (recaptchaCookiesElement) {
+        recaptchaCookiesElement.addEventListener('change', function(e) {
+            var isChecked = this.checked ? 'true' : 'false';
+            sendCookiesValue(isChecked, 'recaptcha');
+        });
+    }
+
+
+    function hideCookiesPopup() {
+        localStorage.setItem('{{ localStorageKeyName }}', true);
+        var cookiesPopupOverlay = document.getElementById('cookies-popup-overlay');
+        cookiesPopupOverlay.style.display = 'none';
+
+        if (cookiesPopupReloadOnClose) {
+            var hideCookiesTimeout = setTimeout(function() {
+                location.reload();
+            }, {{ hideCookiesTimeoutMilliseconds }});
+        }
+    }
+
+
+    function showCookiesPopup(timeoutMilliseconds) {
+        var showCookiesTimeout = setTimeout(function() {
+            var cookiesPopupOverlay = document.getElementById('cookies-popup-overlay');
+            cookiesPopupOverlay.style.display = 'flex';
+        }, timeoutMilliseconds);
+    }
+
+
+    document.addEventListener('click', function(e) {
+        var cookiesPopupOverlay = document.getElementById('cookies-popup-overlay');
+        if (e.target === cookiesPopupOverlay) {
+            if (cookiesPopupDismissible) {
+                cookiesPopupOverlay.style.display = 'none';
+            }
+        }
+    });
+
+
+    var acceptCookiesElement = document.getElementById('accept-cookies');
+    if (acceptCookiesElement) {
+        acceptCookiesElement.addEventListener('change', function(e) {
+            var isChecked = this.checked ? 'true' : 'false';
+            sendCookiesValue(isChecked);
+        });
+    }
+
+
+    function sendCookiesValue(isChecked, type) {
+        fetch('{{ cookiesConfigureUrl }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({'type': type, 'value': isChecked})
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                console.log(data.error);
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    }
+    
+}

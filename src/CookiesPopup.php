@@ -65,9 +65,14 @@ class CookiesPopup
         }
 
         $translationsFile = config('cookies-popup.translations_file');
+        $noJqueryScripts = config('cookies-popup.no_jquery_scripts');
 
         $styles = self::getStubContents(__DIR__ . '/../stubs/styles.stub', self::getStylesReplacements());
-        $scripts = self::getStubContents(__DIR__ . '/../stubs/script.stub', self::getScriptReplacements());
+        if ($noJqueryScripts) {
+            $scripts = self::getStubContents(__DIR__ . '/../stubs/no-jquery-script.stub', self::getScriptReplacements());
+        } else {
+            $scripts = self::getStubContents(__DIR__ . '/../stubs/script.stub', self::getScriptReplacements());
+        }
 
         return view('cookiesPopup::cookies-popup', ['styles' => $styles, 'scripts' => $scripts, 'translationsFile' => $translationsFile])->render();
     }
@@ -107,13 +112,24 @@ class CookiesPopup
 
     private static function getScriptReplacements()
     {
-        if (config('cookies-popup.google_consent_mode')) {
-            $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/analytical-change-listener-with-consent.stub', []);
-            $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/advertising-change-listener-with-consent.stub', []);
+        $noJqueryScripts = config('cookies-popup.no_jquery_scripts');
 
+        if (config('cookies-popup.google_consent_mode')) {
+            if ($noJqueryScripts) {
+                $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/no-jquery-analytical-change-listener-with-consent.stub', []);
+                $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/no-jquery-advertising-change-listener-with-consent.stub', []);
+            } else {
+                $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/analytical-change-listener-with-consent.stub', []);
+                $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/advertising-change-listener-with-consent.stub', []);
+            }
         } else {
-            $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/analytical-change-listener.stub', []);
-            $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/advertising-change-listener.stub', []);
+            if ($noJqueryScripts) {
+                $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/no-jquery-analytical-change-listener.stub', []);
+                $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/no-jquery-advertising-change-listener.stub', []);
+            } else {
+                $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/analytical-change-listener.stub', []);
+                $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/advertising-change-listener.stub', []);
+            }
         }
         return [
             'localStorageKeyName' => config('cookies-popup.local_storage_key_name'),
