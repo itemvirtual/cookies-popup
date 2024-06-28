@@ -93,7 +93,7 @@ If you set `add-inline-styles` to `false` in your `config/cookies-popup.php`. Yo
 To add a link to open the cookie popup, use the id `cookies-popup-show` parameter
 
 ```html
-<a href="#" id="cookies-popup-show">Cookies</a>
+<a href="#" id="cookies-popup-show" rel="noopener">{{ trans('cookies-popup.cookies-configure-link') }}</a>
 ```
 
 #### Check if cookies are allowed
