@@ -21,15 +21,13 @@ window.onload = function() {
 
     $(document).on('click', '#cookies-popup-accept', function (e) {
         sendCookiesValue('true', 'all');
-        setAnalyticalConsent('granted');
-        setAdvertisingConsent('granted');
+        {{ setConsentGranted }}
         hideCookiesPopup();
     });
 
     $(document).on('click', '#cookies-popup-decline', function (e) {
         sendCookiesValue('false', 'all');
-        setAnalyticalConsent('denied');
-        setAdvertisingConsent('denied');
+        {{ setConsentDenied }}
         hideCookiesPopup();
     });
 

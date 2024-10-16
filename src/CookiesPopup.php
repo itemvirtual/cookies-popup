@@ -115,6 +115,8 @@ class CookiesPopup
         $noJqueryScripts = config('cookies-popup.no_jquery_scripts');
 
         if (config('cookies-popup.google_consent_mode')) {
+            $setConsentGranted = 'setAnalyticalConsent(\'granted\'); setAdvertisingConsent(\'granted\');';
+            $setConsentDenied = 'setAnalyticalConsent(\'denied\'); setAdvertisingConsent(\'denied\');';
             if ($noJqueryScripts) {
                 $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/no-jquery-analytical-change-listener-with-consent.stub', []);
                 $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/no-jquery-advertising-change-listener-with-consent.stub', []);
@@ -123,6 +125,8 @@ class CookiesPopup
                 $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/advertising-change-listener-with-consent.stub', []);
             }
         } else {
+            $setConsentGranted = '';
+            $setConsentDenied = '';
             if ($noJqueryScripts) {
                 $analyticalChangeListener = self::getStubContents(__DIR__ . '/../stubs/no-jquery-analytical-change-listener.stub', []);
                 $advertisingChangeListener = self::getStubContents(__DIR__ . '/../stubs/no-jquery-advertising-change-listener.stub', []);
@@ -140,6 +144,8 @@ class CookiesPopup
             'hideCookiesTimeoutMilliseconds' => (int)config('cookies-popup.hide_cookies_popup_timeout', 1000),
             'analyticalChangeListener' => $analyticalChangeListener,
             'advertisingChangeListener' => $advertisingChangeListener,
+            'setConsentGranted' => $setConsentGranted,
+            'setConsentDenied' => $setConsentDenied,
         ];
     }
 

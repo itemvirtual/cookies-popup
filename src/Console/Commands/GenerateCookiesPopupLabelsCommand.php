@@ -150,16 +150,22 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => 'Avviso sui cookie'
                 ],
+                'de' => [
+                    'text' => 'Cookie-Hinweis'
+                ],
+                'pt' => [
+                    'text' => 'Aviso de cookies'
+                ],
                 'eu' => [
                     'text' => 'Cookie oharra'
                 ]
             ],
             'cookies-popup-text' => [
                 'es' => [
-                    'text' => 'Esta Web utiliza Cookies propias y de terceros para intentar ofrecer al usuario la mejor experiencia de uso posible. La información de Cookies se almacena en el navegador y realiza funciones tales como reconocerlo cuando regrese a la Web y ayudar a comprender qué secciones de la web resultan más interesantes y útiles.'
+                    'text' => 'Esta Web utiliza cookies propias y de terceros para intentar ofrecer al usuario la mejor experiencia de uso posible. La información de cookies se almacena en el navegador y realiza funciones tales como reconocerlo cuando regrese a la Web y ayudar a comprender qué secciones de la web resultan más interesantes y útiles.'
                 ],
                 'ca' => [
-                    'text' => 'Aquesta web utilitza Cookies propies i de tercers per intentar oferir a l\'usuari la millor experiència d\'ús possible. La informació de Cookies s\'emmagatzema al navegador i realitza funcions tals com reconèixer quan torni a la Web i ajudar a compendre quines seccions de la web resulten més interessants i útils.'
+                    'text' => 'Aquesta web utilitza cookies propies i de tercers per intentar oferir a l\'usuari la millor experiència d\'ús possible. La informació de cookies s\'emmagatzema al navegador i realitza funcions tals com reconèixer quan torni a la Web i ajudar a compendre quines seccions de la web resulten més interessants i útils.'
                 ],
                 'en' => [
                     'text' => 'This website uses its own and third-party cookies to offer the user the best possible user experience. Cookie information is stored in the browser and performs functions such as recognizing you when you return to the Web and helping to understand which sections of the web are most interesting and useful.'
@@ -169,6 +175,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 ],
                 'it' => [
                     'text' => 'Questo sito utilizza cookie propri e di terze parti per offrire all\'utente la migliore esperienza utente possibile. Le informazioni sui cookie sono memorizzate nel browser e svolgono funzioni come riconoscerti quando ritorni sul Web e aiutare a capire quali sezioni del Web sono più interessanti e utili.'
+                ],
+                'de' => [
+                    'text' => 'Diese Website verwendet eigene und drittanbieter-cookies, um dem Benutzer die bestmögliche Benutzererfahrung zu bieten. Cookie-Informationen werden im Browser gespeichert und führen Funktionen wie das Erkennen aus, wenn Sie zum Web zurückkehren, und helfen zu verstehen, welche Abschnitte des Webs am interessantesten und nützlichsten sind.'
+                ],
+                'pt' => [
+                    'text' => 'Este site utiliza cookies próprias e de terceiros para tentar oferecer ao utilizador a melhor experiência de utilização possível. A informação de cookies é armazenada no navegador e realiza funções tais como reconhecê-lo quando voltar ao site e ajudar a compreender que secções do site são mais interessantes e úteis.'
                 ],
                 'eu' => [
                     'text' => 'Webgune honek cookie propioak eta hirugarrenenak erabiltzen ditu erabiltzaileari ahalik eta erabilera-esperientziarik onena eskaintzen saiatzeko. Cookie-en informazioa nabigatzailean gordetzen da, eta hainbat funtzio betetzen ditu, hala nola webgunera itzultzen denean hura ezagutzea eta webguneko zein atal diren interesgarrienak eta erabilgarrienak ulertzen laguntzea.'
@@ -190,6 +202,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => 'Configura'
                 ],
+                'de' => [
+                    'text' => 'Konfigurieren'
+                ],
+                'pt' => [
+                    'text' => 'Configurar'
+                ],
                 'eu' => [
                     'text' => 'Konfiguratu'
                 ]
@@ -209,6 +227,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 ],
                 'it' => [
                     'text' => 'Accettare tutti'
+                ],
+                'de' => [
+                    'text' => 'Alle akzeptieren'
+                ],
+                'pt' => [
+                    'text' => 'Aceitar todos'
                 ],
                 'eu' => [
                     'text' => 'Onartu guztiak'
@@ -230,6 +254,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => 'Rifiuta tutto'
                 ],
+                'de' => [
+                    'text' => 'Alle ablehnen'
+                ],
+                'pt' => [
+                    'text' => 'Recusar todos'
+                ],
                 'eu' => [
                     'text' => 'Guztiak baztertu'
                 ]
@@ -249,6 +279,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 ],
                 'it' => [
                     'text' => 'Necessaria'
+                ],
+                'de' => [
+                    'text' => 'Erforderlich'
+                ],
+                'pt' => [
+                    'text' => 'Necessárias'
                 ],
                 'eu' => [
                     'text' => 'Beharrezko'
@@ -270,6 +306,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => 'I cookie obbligatori sono strettamente necessari per garantire il corretto funzionamento del sito web.'
                 ],
+                'de' => [
+                    'text' => 'Erforderliche cookies sind unbedingt erforderlich, um das ordnungsgemäße Funktionieren der Website zu gewährleisten.'
+                ],
+                'pt' => [
+                    'text' => 'As cookies necessárias são estritamente essenciais para garantir o correto funcionamento do site.'
+                ],
                 'eu' => [
                     'text' => 'Beharrezkoak diren cookieak ezinbestekoak dira webguneak behar bezala funtzionatzen duela bermatzeko.'
                 ]
@@ -289,6 +331,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 ],
                 'it' => [
                     'text' => 'Preferenze'
+                ],
+                'de' => [
+                    'text' => 'Einstellungen'
+                ],
+                'pt' => [
+                    'text' => 'Preferências'
                 ],
                 'eu' => [
                     'text' => 'Lehentasunak'
@@ -310,6 +358,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => 'I cookie delle preferenze consentono a un sito Web di ricordare le informazioni che cambiano il modo in cui il sito Web si comporta o appare, come la lingua preferita o le impostazioni personalizzate.'
                 ],
+                'de' => [
+                    'text' => 'Präferenz-cookies ermöglichen es einer Website, Informationen zu speichern, die das Verhalten oder das Aussehen der Website ändern, wie z. B. Ihre bevorzugte Sprache oder benutzerdefinierte Einstellungen.'
+                ],
+                'pt' => [
+                    'text' => 'As cookies de preferência permitem que um site se recorde de informação que muda a forma como o site se comporta ou se parece, como a sua língua preferida ou definições personalizadas.'
+                ],
                 'eu' => [
                     'text' => 'Hobespeneko cookie-ek webguneak webgunearen portaera edo itxura aldatzen duen informazioa gogoratzea ahalbidetzen dute, hala nola zure hizkuntza hobetsia edo ezarpen pertsonalizatuak.'
                 ]
@@ -329,6 +383,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 ],
                 'it' => [
                     'text' => 'Analitica'
+                ],
+                'de' => [
+                    'text' => 'Analytisch'
+                ],
+                'pt' => [
+                    'text' => 'Analíticas'
                 ],
                 'eu' => [
                     'text' => 'Analitikak'
@@ -350,6 +410,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => 'I cookie analitici ci permettono di sapere come gli utenti interagiscono sul web e ne migliorano il funzionamento. Ci consentono di raccogliere dati statistici come numero di visite, traffico web, ecc.'
                 ],
+                'de' => [
+                    'text' => 'Analytische cookies ermöglichen es uns zu wissen, wie Benutzer im Web interagieren und seine Funktionsweise zu verbessern. Sie ermöglichen es uns, statistische Daten wie Anzahl der Besuche, Web-Traffic usw. zu sammeln.'
+                ],
+                'pt' => [
+                    'text' => 'As cookies analíticas permitem-nos saber como os utilizadores interagem no site e melhorar o seu funcionamento. Permitem-nos recolher dados estatísticos como número de visitas, tráfego web, etc.'
+                ],
                 'eu' => [
                     'text' => 'Cookie analitikoek aukera ematen digute erabiltzaileek webgunean nola elkarreragiten duten jakiteko eta haien funtzionamendua hobetzeko. Datu estatistikoak biltzeko aukera ematen digute, hala nola bisita kopurua, web trafikoa, etab.'
                 ]
@@ -369,6 +435,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 ],
                 'it' => [
                     'text' => 'Pubblicità'
+                ],
+                'de' => [
+                    'text' => 'Werbung'
+                ],
+                'pt' => [
+                    'text' => 'Publicitárias'
                 ],
                 'eu' => [
                     'text' => 'Publizitatea'
@@ -390,6 +462,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => 'I cookie funzionali ci aiutano a configurare funzionalità come la condivisione di contenuti sui social network, la raccolta di dati statistici di navigazione e altri servizi di terze parti. Questo sito utilizza cookie statistici.'
                 ],
+                'de' => [
+                    'text' => 'Funktionale cookies helfen uns, Funktionen wie das Teilen von Inhalten in sozialen Netzwerken, das Sammeln statistischer Browsing-Daten und andere Dienste von Drittanbietern zu konfigurieren. Diese Website verwendet statistische cookies.'
+                ],
+                'pt' => [
+                    'text' => 'As cookies funcionais ajudam-nos a configurar funcionalidades como partilhar conteúdos em redes sociais, recolher dados estatísticos de navegação e outras prestações de terceiros. Este site utiliza cookies estatísticas.'
+                ],
                 'eu' => [
                     'text' => 'Cookie funtzionalek funtzionalitateak konfiguratzen laguntzen digute, hala nola sare sozialetan edukia partekatzea, nabigazioko datu estatistikoak biltzea eta hirugarrenen beste zerbitzu batzuk. Webgune honek cookie estatistikoak erabiltzen ditu.'
                 ]
@@ -408,6 +486,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                     'text' => ''
                 ],
                 'it' => [
+                    'text' => ''
+                ],
+                'de' => [
+                    'text' => ''
+                ],
+                'pt' => [
                     'text' => ''
                 ],
                 'eu' => [
@@ -430,6 +514,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => ''
                 ],
+                'de' => [
+                    'text' => ''
+                ],
+                'pt' => [
+                    'text' => ''
+                ],
                 'eu' => [
                     'text' => ''
                 ]
@@ -450,6 +540,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 'it' => [
                     'text' => 'Salva le impostazioni'
                 ],
+                'de' => [
+                    'text' => 'Einstellungen speichern'
+                ],
+                'pt' => [
+                    'text' => 'Guardar configuração'
+                ],
                 'eu' => [
                     'text' => 'Gorde ezarpenak'
                 ]
@@ -469,6 +565,12 @@ class GenerateCookiesPopupLabelsCommand extends Command
                 ],
                 'it' => [
                     'text' => 'Gestisci i cookie'
+                ],
+                'de' => [
+                    'text' => 'Cookies verwalten'
+                ],
+                'pt' => [
+                    'text' => 'Configurar cookies'
                 ],
                 'eu' => [
                     'text' => 'Kudeatu cookie-ak'

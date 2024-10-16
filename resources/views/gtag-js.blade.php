@@ -49,7 +49,7 @@
     <!-- ***** No se ha definido la id de Google Analytics ***** -->
 @endif
 
-{{--Create one update function for each consent parameter--}}
+{{--Create or update function for each consent parameter--}}
 @if(config('cookies-popup.google_consent_mode'))
     <script>
         function setAnalyticalConsent(value) {
@@ -94,6 +94,16 @@
                 'analytics_storage': value
             });
             @endif
+        }
+    </script>
+@else
+    <script>
+        function setAnalyticalConsent(value) {
+            return true;
+        }
+
+        function setAdvertisingConsent(value) {
+            return true;
         }
     </script>
 @endif

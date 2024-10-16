@@ -27,3 +27,62 @@
 @else
     <!-- ***** No se ha definido la id de Google Analytics ***** -->
 @endif
+
+{{--Create or update function for each consent parameter--}}
+@if(config('cookies-popup.google_consent_mode'))
+    <script>
+        function setAnalyticalConsent(value) {
+            setConsentForAnalyticsStorage(value);
+        }
+
+        function setAdvertisingConsent(value) {
+            setConsentForAdStorage(value);
+            setConsentForAdUserData(value);
+            setConsentForAdPersonalization(value);
+        }
+
+        /** ************************************ */
+
+        function setConsentForAdStorage(value) {
+            @if($firstMeasurementId)
+            gtag('consent', 'update', {
+                'ad_storage': value
+            });
+            @endif
+        }
+
+        function setConsentForAdUserData(value) {
+            @if($firstMeasurementId)
+            gtag('consent', 'update', {
+                'ad_user_data': value
+            });
+            @endif
+        }
+
+        function setConsentForAdPersonalization(value) {
+            @if($firstMeasurementId)
+            gtag('consent', 'update', {
+                'ad_personalization': value
+            });
+            @endif
+        }
+
+        function setConsentForAnalyticsStorage(value) {
+            @if($firstMeasurementId)
+            gtag('consent', 'update', {
+                'analytics_storage': value
+            });
+            @endif
+        }
+    </script>
+@else
+    <script>
+        function setAnalyticalConsent(value) {
+            return true;
+        }
+
+        function setAdvertisingConsent(value) {
+            return true;
+        }
+    </script>
+@endif

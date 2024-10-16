@@ -30,8 +30,7 @@ window.onload = function() {
     document.addEventListener('click', function(e) {
         if(e.target && e.target.id === 'cookies-popup-accept') {
             sendCookiesValue('true', 'all');
-            setAnalyticalConsent('granted');
-            setAdvertisingConsent('granted');
+            {{ setConsentGranted }}
             hideCookiesPopup();
         }
     });
@@ -40,8 +39,7 @@ window.onload = function() {
     document.addEventListener('click', function(e) {
         if(e.target && e.target.id === 'cookies-popup-decline') {
             sendCookiesValue('false', 'all');
-            setAnalyticalConsent('denied');
-            setAdvertisingConsent('denied');
+            {{ setConsentDenied }}
             hideCookiesPopup();
         }
     });

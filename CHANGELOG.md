@@ -2,6 +2,11 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.2.4 - 2024-10-16
+
+- `setAnalyticalConsent` and `setAdvertisingConsent` functions issue in analytics.js
+- Deutsch and Portuguese translations
+
 ## 1.2.3 - 2024-06-28
 
 - No jQuery option
