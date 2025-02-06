@@ -2,6 +2,10 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.2.5 - 2025-02-06
+
+- Change composer `"php": "^7.4 || ^8.0"` for php 7 compatibility
+
 ## 1.2.4 - 2024-10-16
 
 - `setAnalyticalConsent` and `setAdvertisingConsent` functions issue in analytics.js
