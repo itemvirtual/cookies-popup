@@ -34,6 +34,7 @@ protected $except = [
 ```
 
 In laravel 11 you should add the cookies name to the `encryptCookies` method in your application's `bootstrap/app.php` file
+
 ```php
 ->withMiddleware(function (Middleware $middleware) {
     $middleware->encryptCookies(except: [
@@ -154,13 +155,39 @@ use `custom_classes`, which will concatenate your class to the generic one
 
 ### Documentation links
 
-Google Consent Mode  
+Google Consent Mode
 
 [Cómo configurar el modo de consentimiento en sitios web](https://developers.google.com/tag-platform/security/guides/consent)  
 [Cómo solucionar problemas del modo de consentimiento con Tag Assistant](https://developers.google.com/tag-platform/security/guides/consent-debugging)  
 [Tag Manager consent mode support](https://support.google.com/tagmanager/answer/10718549)  
-[Google Tag Assistant](https://tagassistant.google.com)  
+[Google Tag Assistant](https://tagassistant.google.com)
 
+### Google Consent Mode
+
+| Consent Mode            | Categoría     | Descripción                                                           |
+|-------------------------|---------------|-----------------------------------------------------------------------|
+| ad_storage              | Publicitarias | Es para almacenamiento relacionado con publicidad.                    |
+| ad_user_data            | Publicitarias | Recoge datos del usuario para personalización de anuncios.            |
+| ad_personalization      | Publicitarias | Controla si los anuncios se personalizan.                             |
+| analytics_storage       | Analíticas    | Para el uso de herramientas como Google Analytics.                    |
+| functionality_storage   | Funcionales   | Almacena configuraciones relacionadas con la funcionalidad del sitio. |
+| personalization_storage | Funcionales   | Relacionado con la personalización no publicitaria.                   |
+| security_storage        | Necesarias    | Para almacenamiento relacionado con seguridad y prevención de fraude. |
+
+### Function not defined
+
+If you don't add the analytics code `getGtagJs()` or `getAnalyticsJs()` and you get the message `Uncaught ReferenceError: setAnalyticalConsent/setAdvertisingConsent is not defined`, you'll need to add this script.
+
+```javascript
+<script>
+    if (typeof setAnalyticalConsent === "undefined") {
+    function setAnalyticalConsent(value) {}
+}
+    if (typeof setAdvertisingConsent === "undefined") {
+    function setAdvertisingConsent(value) {}
+}
+</script>
+```
 
 ### Changelog
 
