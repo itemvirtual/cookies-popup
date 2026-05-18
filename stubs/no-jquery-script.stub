@@ -87,6 +87,7 @@ window.onload = function() {
         localStorage.setItem('{{ localStorageKeyName }}', true);
         var cookiesPopupOverlay = document.getElementById('cookies-popup-overlay');
         cookiesPopupOverlay.style.display = 'none';
+        cookiesPopupOverlay.setAttribute('hidden', '');
 
         if (cookiesPopupReloadOnClose) {
             var hideCookiesTimeout = setTimeout(function() {
@@ -100,6 +101,7 @@ window.onload = function() {
         var showCookiesTimeout = setTimeout(function() {
             var cookiesPopupOverlay = document.getElementById('cookies-popup-overlay');
             cookiesPopupOverlay.style.display = 'flex';
+            cookiesPopupOverlay.removeAttribute('hidden');
         }, timeoutMilliseconds);
     }
 
@@ -109,6 +111,7 @@ window.onload = function() {
         if (e.target === cookiesPopupOverlay) {
             if (cookiesPopupDismissible) {
                 cookiesPopupOverlay.style.display = 'none';
+                cookiesPopupOverlay.setAttribute('hidden', '');
             }
         }
     });

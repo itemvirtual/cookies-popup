@@ -27,10 +27,10 @@
 @endif
 
 {{--Cookies popup--}}
-<div id="cookies-popup-overlay" class="overlay {{ config('cookies-popup.custom_classes.overlay') }}">
-    <div id="cookies-popup" class="popup {{ config('cookies-popup.custom_classes.popup') }}">
+<div id="cookies-popup-overlay" class="overlay {{ config('cookies-popup.custom_classes.overlay') }}" hidden>
+    <div id="cookies-popup" class="popup {{ config('cookies-popup.custom_classes.popup') }}" role="dialog" aria-modal="true" aria-labelledby="cookies-popup-title" tabindex="-1">
         <div class="popup-header {{ config('cookies-popup.custom_classes.popup_header') }}">
-            <div class="popup-title {{ config('cookies-popup.custom_classes.popup_title') }}">{{ trans($translationsFile . '.cookies-popup-title') }}</div>
+            <div id="cookies-popup-title" class="popup-title {{ config('cookies-popup.custom_classes.popup_title') }}">{{ trans($translationsFile . '.cookies-popup-title') }}</div>
         </div>
 
         <div class="popup-text {{ config('cookies-popup.custom_classes.popup_text') }}">{!! nl2br(trans($translationsFile . '.cookies-popup-text')) !!}</div>
