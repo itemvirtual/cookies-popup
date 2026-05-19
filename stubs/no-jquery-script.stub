@@ -1,8 +1,10 @@
 window.onload = function() {
 
-    var cookiesToggleTimeout = 300;
     var cookiesPopupDismissible = {{ cookiesPopupDismissible }};
     var cookiesPopupReloadOnClose = {{ cookiesPopupReloadOnClose }};
+    var lastFocusedElementBeforeCookies = null;
+
+    const cookiesPopup = document.getElementById('cookies-popup');
 
     (function checkCookiesPopup() {
         try {
@@ -31,7 +33,7 @@ window.onload = function() {
         if(e.target && e.target.id === 'cookies-popup-accept') {
             sendCookiesValue('true', 'all');
             {{ setConsentGranted }}
-            hideCookiesPopup();
+            closeCookiesPopup();
         }
     });
 
@@ -40,20 +42,20 @@ window.onload = function() {
         if(e.target && e.target.id === 'cookies-popup-decline') {
             sendCookiesValue('false', 'all');
             {{ setConsentDenied }}
-            hideCookiesPopup();
+            closeCookiesPopup();
         }
     });
 
 
     document.addEventListener('click', function(e) {
         if(e.target && e.target.id === 'cookies-popup-close') {
-            hideCookiesPopup();
+            closeCookiesPopup();
         }
     });
 
 
     document.addEventListener('click', function(e) {
-        if(e.target && e.target.id === 'cookies-popup-show') {
+        if(e.target && e.target.id === 'cookies-popup-show' || e.target.classList.contains('cookies-popup-show')) {
             e.preventDefault();
             showCookiesPopup(10);
         }
@@ -82,12 +84,18 @@ window.onload = function() {
         });
     }
 
+    function closeCookiesPopup() {
+        localStorage.setItem('{{ localStorageKeyName }}', true);
+        hideCookiesPopup()
+    }
 
     function hideCookiesPopup() {
-        localStorage.setItem('{{ localStorageKeyName }}', true);
         var cookiesPopupOverlay = document.getElementById('cookies-popup-overlay');
         cookiesPopupOverlay.style.display = 'none';
         cookiesPopupOverlay.setAttribute('hidden', '');
+        if (lastFocusedElementBeforeCookies) {
+            lastFocusedElementBeforeCookies.focus();
+        }
 
         if (cookiesPopupReloadOnClose) {
             var hideCookiesTimeout = setTimeout(function() {
@@ -98,6 +106,7 @@ window.onload = function() {
 
 
     function showCookiesPopup(timeoutMilliseconds) {
+        lastFocusedElementBeforeCookies = document.activeElement;
         var showCookiesTimeout = setTimeout(function() {
             var cookiesPopupOverlay = document.getElementById('cookies-popup-overlay');
             cookiesPopupOverlay.style.display = 'flex';
@@ -110,8 +119,10 @@ window.onload = function() {
         var cookiesPopupOverlay = document.getElementById('cookies-popup-overlay');
         if (e.target === cookiesPopupOverlay) {
             if (cookiesPopupDismissible) {
-                cookiesPopupOverlay.style.display = 'none';
-                cookiesPopupOverlay.setAttribute('hidden', '');
+                hideCookiesPopup();
+                if (lastFocusedElementBeforeCookies) {
+                    lastFocusedElementBeforeCookies.focus();
+                }
             }
         }
     });
@@ -149,5 +160,41 @@ window.onload = function() {
             console.error('There was a problem with the fetch operation:', error);
         });
     }
-    
+
+    /* ************************************************************************************************* Accessibility */
+
+    function trapCookiesPopupFocus(event) {
+        if (event.key !== 'Tab') return;
+
+        const candidates = cookiesPopup.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+
+        // Solo elementos que el usuario realmente puede ver/enfocar
+        const focusable = Array.from(candidates).filter(el => {
+            return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+        });
+
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
+    if (cookiesPopup) {
+        cookiesPopup.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                hideCookiesPopup();
+                return;
+            }
+            trapCookiesPopupFocus(e);
+        });
+    }
+
 }

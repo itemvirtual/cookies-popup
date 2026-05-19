@@ -152,7 +152,7 @@ return [
     |
     */
 
-    'cookies_popup_reload_on_close' => true,
+    'cookies_popup_reload_on_close' => false,
 
     /*
     |--------------------------------------------------------------------------

@@ -3,6 +3,9 @@ window.onload = function() {
     var cookiesToggleTimeout = 300;
     var cookiesPopupDismissible = {{ cookiesPopupDismissible }};
     var cookiesPopupReloadOnClose = {{ cookiesPopupReloadOnClose }};
+    var lastFocusedElementBeforeCookies = null;
+
+    const cookiesPopup = document.getElementById('cookies-popup');
 
     (function checkCookiesPopup() {
         try {
@@ -22,20 +25,20 @@ window.onload = function() {
     $(document).on('click', '#cookies-popup-accept', function (e) {
         sendCookiesValue('true', 'all');
         {{ setConsentGranted }}
-        hideCookiesPopup();
+        closeCookiesPopup();
     });
 
     $(document).on('click', '#cookies-popup-decline', function (e) {
         sendCookiesValue('false', 'all');
         {{ setConsentDenied }}
-        hideCookiesPopup();
+        closeCookiesPopup();
     });
 
     $(document).on('click', '#cookies-popup-close', function (e) {
-        hideCookiesPopup();
+        closeCookiesPopup();
     });
 
-    $(document).on('click', '#cookies-popup-show', function (e) {
+    $(document).on('click', '#cookies-popup-show, .cookies-popup-show', function (e) {
         e.preventDefault();
         showCookiesPopup(10);
     });
@@ -54,10 +57,17 @@ window.onload = function() {
         sendCookiesValue(isChecked, 'recaptcha');
     });
 
-    function hideCookiesPopup() {
+    function closeCookiesPopup() {
         localStorage.setItem('{{ localStorageKeyName }}', true);
+        hideCookiesPopup()
+    }
+
+    function hideCookiesPopup() {
         $('#cookies-popup-overlay').fadeOut(cookiesToggleTimeout);
         $('#cookies-popup-overlay').attr('hidden', '');
+        if (lastFocusedElementBeforeCookies) {
+            lastFocusedElementBeforeCookies.focus();
+        }
         if (cookiesPopupReloadOnClose){
             var hideCookiesTimeout = setTimeout(function () {
                 location.reload();
@@ -66,6 +76,7 @@ window.onload = function() {
     }
 
     function showCookiesPopup(timeoutMilliseconds) {
+        lastFocusedElementBeforeCookies = document.activeElement;
         var showCookiesTimeout = setTimeout(function () {
             $('#cookies-popup-overlay').fadeIn(cookiesToggleTimeout).css('display', 'flex');
             $('#cookies-popup-overlay').removeAttr('hidden');
@@ -75,8 +86,10 @@ window.onload = function() {
     $(document).on('click', '#cookies-popup-overlay', function (e) {
         if (e.target === this) {
             if (cookiesPopupDismissible) {
-                $('#cookies-popup-overlay').fadeOut(cookiesToggleTimeout);
-                $('#cookies-popup-overlay').attr('hidden', '');
+                hideCookiesPopup()
+                if (lastFocusedElementBeforeCookies) {
+                    lastFocusedElementBeforeCookies.focus();
+                }
             }
         }
     });
@@ -93,5 +106,41 @@ window.onload = function() {
             }
         });
     }
-    
-};
+
+    /* ************************************************************************************************* Accessibility */
+
+    function trapCookiesPopupFocus(event) {
+        if (event.key !== 'Tab') return;
+
+        const candidates = cookiesPopup.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+
+        // Solo elementos que el usuario realmente puede ver/enfocar
+        const focusable = Array.from(candidates).filter(el => {
+            return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+        });
+
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
+    if (cookiesPopup) {
+        cookiesPopup.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                hideCookiesPopup();
+                return;
+            }
+            trapCookiesPopupFocus(e);
+        });
+    }
+
+}

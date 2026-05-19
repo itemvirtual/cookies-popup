@@ -126,10 +126,19 @@
 
 .toggle-control input {
     position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.toggle-control input:focus + .control {
+  outline: 1px solid #000;
 }
 
 .toggle-control input:checked ~ .control {

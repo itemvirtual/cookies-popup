@@ -2,6 +2,13 @@
 
 All notable changes to `cookies-popup` will be documented in this file
 
+## 1.2.7 - 2026-05-19
+
+- New lastFocusedElementBeforeCookies, return focus to active element
+- New trapCookiesPopupFocus, prevents focus from leaving the dialog when tabbing forward or backward
+- Close with esc
+- Correct visually hidden checkboxes behavior that prevented them from receiving keyboard focus
+
 ## 1.2.6 - 2026-05-18
 
 - Add Accessibility improvements
